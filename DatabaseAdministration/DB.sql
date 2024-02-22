@@ -1,2 +1,0 @@
-SELECT TOP 5 Id, Name FROM customerNames
-ORDER BY NEWID()
