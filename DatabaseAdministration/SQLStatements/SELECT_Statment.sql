@@ -1,7 +1,7 @@
 use [AdventureWorks2022]
 go
 
-select * from Person.address;
+SELECT * FROM Person.Address;
 
 select AddressID,city,modifieddate from person.address;
 

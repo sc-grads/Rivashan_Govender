@@ -1,3 +1,6 @@
+Use master
+go
+
 CREATE TABLE [dbo].[Employee](
 	[EmpID] [int] NOT NULL,
 	[EmpName] [nvarchar](50) NULL,
