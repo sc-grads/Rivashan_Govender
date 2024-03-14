@@ -1,0 +1,4 @@
+BEGIN
+IF DB_ID('temp_db') IS NULL
+CREATE DATABASE temp_db;
+END
