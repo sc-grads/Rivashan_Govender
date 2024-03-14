@@ -1,4 +1,4 @@
 BEGIN
-IF DB_ID('temp_db') IS NULL
-CREATE DATABASE temp_db;
+IF DB_ID('AutomatedDatabase') IS NULL
+CREATE DATABASE AutomatedDatabase;
 END
