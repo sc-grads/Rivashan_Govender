@@ -1,0 +1,30 @@
+name: Check MSSQL Database
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check_database:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Download and run MSSQL Docker container
+        run: |
+          sudo docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=YourStrong@Password122' -p 1433:1433 -d --name mssql-server -v $(pwd):/scripts mcr.microsoft.com/mssql/server:2019-latest
+
+      - name: Wait for MSSQL to start
+        run: |
+          echo "Waiting for MSSQL server to start..."
+          sleep 10 # Wait for 10 seconds
+
+      - name: Create Database 
+        run: |
+          sqlcmd -S ${{ secrets.SQLDB_SERVER }} -U sa -P ${{ secrets.SQLDB_PASSWORD }} -i scripts/create_database.sql
+
+      - name: Add Table 
+        run: |
+          sqlcmd -S ${{ secrets.SQLDB_SERVER }} -U sa -P ${{ secrets.SQLDB_PASSWORD }} -i scripts/add_table.sql
