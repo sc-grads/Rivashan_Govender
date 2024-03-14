@@ -23,8 +23,8 @@ jobs:
 
       - name: Create Database 
         run: |
-          sqlcmd -S ${{ secrets.SQLDB_SERVER }} -U sa -P ${{ secrets.SQLDB_PASSWORD }} -i scripts/create_database.sql
+          sqlcmd -S ${{ secrets.SQLDB_SERVER }} -U AutomationUser -P ${{ secrets.SQLDB_PASSWORD }} -i scripts/create_database.sql
 
       - name: Add Table 
         run: |
-          sqlcmd -S ${{ secrets.SQLDB_SERVER }} -U sa -P ${{ secrets.SQLDB_PASSWORD }} -i scripts/add_table.sql
+          sqlcmd -S ${{ secrets.SQLDB_SERVER }} -U AutomationUser -P ${{ secrets.SQLDB_PASSWORD }} -i scripts/add_table.sql
