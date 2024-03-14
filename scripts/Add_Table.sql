@@ -12,5 +12,5 @@ CREATE TABLE UserInfo
 END 
 
 BEGIN
-INSERT INTO UserInfo (UserId, Name)VALUES (1, 'Test name');
+INSERT INTO UserInfo (UserId, Name)VALUES (1, 'Elon');
 END
