@@ -3,8 +3,6 @@ go
 
 
 IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Employee_Details')
-CREATE TABLE Employee_Details
-
 -- Create UserInfo table with additional columns
 CREATE TABLE Employee_Details
 (
