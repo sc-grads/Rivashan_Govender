@@ -1,0 +1,35 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Rivashan Govender\\Documents\\Rivashan_Govender\\Rivashan_Govender\\DatabaseAdministration\\SSRS\\Reports\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A9518519-B8D8-4C98-88A3-1C900A787825}|..\\..\\..\\..\\..\\..\\source\\repos\\AvgRevenue\\AvgRevenue\\AvgRevenue.rptproj|C:\\Users\\Rivashan Govender\\source\\repos\\AvgRevenue\\AvgRevenue\\Report1.rdl||{420F4200-DD61-4785-81F3-52669CBC208E}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Report1.rdl [Design]",
+              "DocumentMoniker": "C:\\Users\\Rivashan Govender\\source\\repos\\AvgRevenue\\AvgRevenue\\Report1.rdl",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\source\\repos\\AvgRevenue\\AvgRevenue\\Report1.rdl",
+              "ToolTip": "C:\\Users\\Rivashan Govender\\source\\repos\\AvgRevenue\\AvgRevenue\\Report1.rdl [Design]",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\source\\repos\\AvgRevenue\\AvgRevenue\\Report1.rdl [Design]",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHtSURBVEhLY2RAArsUlP9BmfjA9/8M/0vjnzya/uLPn/9QMezg////KBbs1dL9Z751M8OnixehIpiAkYWF4dOVq\u002B8fzZtbVv740YJz37//hUphBSxQGg4\u002BnDjJcK2yCsrDBDzqagyGSxYJMjIz91VPnizc/fpl34nv3/9ApTEAE5QmCbzYvJVBzMOdV7\u002BgoLZRUjpZnJkZpzlkWfD7zWuGC0kpDFyqKtzyKcmtixWVk804OTFCAwTIsgAEfr1\u002BzXCnvZOBV0tLSDEzo7dMRKzIlJOTGSoNB2RbAAI/nj1juN3SxiDq7sYDDK6aVmnZJPTgQrExXlS8XsTejuH13r1QEUzAJiLMIBkSzMAmJMTAb2DAwKOmBvTNGwbpqAg2RkYmG6e79z4sfv/uLFQ56T749vARw/0pUxk\u002BXrgAx69372a4mJrOwKumJsjExtELVQoGJFvw78cPhk8XLmLF/37\u002BZGBkYuSCKgUDiuJAISsDjnEBiixQKSmGY1yAIguIATgtUC4ugmNKAE4LFLMz4ZgSMHBBhA6ErK0Y1GqrwRjEJhYQbQGfvh6DXGICGIPYxILBE0TkAppbgFEnq9fW4K0y8QGt9jaGm80tDM7XLsMdTnKljw/w6esznPT2xW3BbkUV/M0QIoHr/TtQcxkYAPbMr5REYLiTAAAAAElFTkSuQmCC",
+              "WhenOpened": "2024-03-26T10:40:09.398Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
