@@ -1,0 +1,27 @@
+name: Deploy SSRS Reports
+
+on:
+  push:
+    paths: 
+      -'DatabaseAdministration/SSRS/Scripts/**'
+    branches:
+      - main
+     
+
+jobs:
+  deploy:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up PowerShell
+      uses: microsoft/powershell@v1
+
+    - name: Navigate to script directory
+      run: cd DatabaseAdministration/SSRS/Scripts
+
+    - name: Run PowerShell script with automatic "Y" input
+      run: |
+        echo "Y" | .\Pwrshell_Deploy.ps1
