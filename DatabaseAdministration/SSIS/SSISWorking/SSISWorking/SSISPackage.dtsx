@@ -11,8 +11,8 @@
   DTS:LocaleID="7177"
   DTS:ObjectName="SSISPackage"
   DTS:PackageType="5"
-  DTS:VersionBuild="4"
-  DTS:VersionGUID="{774CF74D-847D-4FB5-9BEC-4C5D1FDE58FF}">
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{4BFB5DC4-BF09-4CFA-A328-4A66520377F8}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -46,6 +46,52 @@
           version="1">
           <components>
             <component
+              refId="Package\Data Flow\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data Flow\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Data Flow\Data Conversion.Inputs[Data Conversion Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Data Flow\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Data Flow\OLE DB Destination"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
@@ -61,7 +107,7 @@
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[Output01]</property>
+                  name="OpenRowset">[dbo].[Output02]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -124,12 +170,6 @@
                       externalMetadataColumnId="Package\Data Flow\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
                       lineageId="Package\Data Flow\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerID]" />
                     <inputColumn
-                      refId="Package\Data Flow\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NameStyle]"
-                      cachedDataType="bool"
-                      cachedName="NameStyle"
-                      externalMetadataColumnId="Package\Data Flow\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NameStyle]"
-                      lineageId="Package\Data Flow\OLE DB Source.Outputs[OLE DB Source Output].Columns[NameStyle]" />
-                    <inputColumn
                       refId="Package\Data Flow\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Title]"
                       cachedCodepage="1252"
                       cachedDataType="str"
@@ -190,12 +230,10 @@
                     isUsed="True">
                     <externalMetadataColumn
                       refId="Package\Data Flow\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
-                      dataType="i2"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
                       name="CustomerID" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NameStyle]"
-                      dataType="bool"
-                      name="NameStyle" />
                     <externalMetadataColumn
                       refId="Package\Data Flow\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Title]"
                       codePage="1252"
@@ -609,8 +647,13 @@
           </components>
           <paths>
             <path
-              refId="Package\Data Flow.Paths[OLE DB Source Output]"
+              refId="Package\Data Flow.Paths[Data Conversion Output]"
               endId="Package\Data Flow\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Data Flow\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Data Flow.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow\Data Conversion.Inputs[Data Conversion Input]"
               name="OLE DB Source Output"
               startId="Package\Data Flow\OLE DB Source.Outputs[OLE DB Source Output]" />
           </paths>
@@ -641,56 +684,68 @@
     design-time-name="Package\Data Flow">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="154.666666666667,42.6666666666667"
           Id="Package\Data Flow\OLE DB Source"
-          TopLeft="34.3749984633179,57.4736835794766" />
+          TopLeft="43.7499980442228,58.8421046170832" />
         <NodeLayout
           Size="174.666666666667,42.6666666666667"
           Id="Package\Data Flow\OLE DB Destination"
-          TopLeft="89.423072925554,204.210524073598" />
+          TopLeft="36.9230752724869,325.999996420584" />
+        <NodeLayout
+          Size="158.666666666667,42.6666666666667"
+          Id="Package\Data Flow\Data Conversion"
+          TopLeft="39.3749982398003,199.105260971758" />
         <EdgeLayout
           Id="Package\Data Flow.Paths[OLE DB Source Output]"
-          TopLeft="111.708331796651,100.140350246143">
+          TopLeft="119.895831475345,101.50877128375">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="65.048074462236,104.070173827455"
+              EndConnector="0,97.5964896880085"
               Start="0,0"
-              End="65.048074462236,96.570173827455">
+              End="0,90.0964896880085">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,48.0350869137275" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,48.0350869137275"
-                    Point2="0,52.0350869137275"
-                    Point3="4,52.0350869137275" />
-                  <mssgle:LineSegment
-                    End="61.048074462236,52.0350869137275" />
-                  <mssgle:CubicBezierSegment
-                    Point1="61.048074462236,52.0350869137275"
-                    Point2="65.048074462236,52.0350869137275"
-                    Point3="65.048074462236,56.0350869137275" />
-                  <mssgle:LineSegment
-                    End="65.048074462236,96.570173827455" />
+                    End="0,90.0964896880085" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="24.524037231118,57.0350869137275,16,16"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow.Paths[Data Conversion Output]"
+          TopLeft="121.482370089477,241.771927638425">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,84.2280687821593"
+              Start="0,0"
+              End="0,76.7280687821593">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,76.7280687821593" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow\OLE DB Source">
+    design-time-name="Package\Data Flow\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -703,7 +758,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow\OLE DB Destination">
+    design-time-name="Package\Data Flow\OLE DB Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

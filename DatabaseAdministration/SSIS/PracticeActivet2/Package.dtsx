@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="4/3/2024 3:54:12 PM"
@@ -11,8 +11,8 @@
   DTS:LocaleID="7177"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="5"
-  DTS:VersionGUID="{82D71FEF-FA85-4ABE-AF9F-EB4646705967}">
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{D966BB87-17C5-4CE6-B6A6-6E9E2125F0B8}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -712,21 +712,21 @@
         <NodeLayout
           Size="158.666666666667,42.6666666666667"
           Id="Package\Data Flow Task\Data Conversion"
-          TopLeft="120.624994607642,276.42104959653" />
+          TopLeft="124.999994412065,263.421049739268" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
-          TopLeft="201.458327829217,235.614032969196">
+          TopLeft="203.645827731428,235.614032969196">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,40.8070166273346"
+              EndConnector="0,27.8070167700721"
               Start="0,0"
-              End="0,33.3070166273346">
+              End="0,20.3070167700721">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,33.3070166273346" />
+                    End="0,20.3070167700721" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -741,18 +741,18 @@
           TopLeft="123.749994467944,357.842101334122" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Data Conversion Output]"
-          TopLeft="200.85416120446,319.087716263197">
+          TopLeft="203.041661106671,306.087716405934">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,38.7543850709253"
+              EndConnector="0,51.7543849281878"
               Start="0,0"
-              End="0,31.2543850709253">
+              End="0,44.2543849281878">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,31.2543850709253" />
+                    End="0,44.2543849281878" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
