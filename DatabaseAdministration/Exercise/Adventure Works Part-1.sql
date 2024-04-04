@@ -145,7 +145,8 @@ Sample Output:
 
 
 */
-SELECT SalesPersonID, CustomerID, SUM(SubTotal) AS SUM_Total FROM Sales.SalesOrderHeader s GROUP BY ROLLUP (SalesPersonID, CustomerID)
+
+SELECT SalesPersonID, CustomerID, SUM(SubTotal) AS SUM_Total FROM Sales.SalesOrderHeader GROUP BY ROLLUP (CustomerID)
 
 
 /*
