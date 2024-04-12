@@ -2,7 +2,7 @@
 $SSISNamespace = "Microsoft.SqlServer.Management.IntegrationServices"
 $TargetServerName = "DESKTOP-932FK41"
 $TargetFolderName = "GraduateDB"
-$ProjectFilePath = "C:\Users\Rivashan Govender\Documents\Rivashan_Govender\DatabaseAdministration\SSIS\GraduateMultiFile\GraduateMultiFile\bin\Development\GraduateMultiFile.ispac"
+$ProjectFilePath = "C:\Users\Rivashan Govender\Documents\SSIS\GraduateMultiFile\GraduateMultiFile\bin\Development\GraduateMultiFile.ispac"
 $ProjectName = "GraduateMultiFile"
 
 
@@ -15,6 +15,7 @@ $loadStatus = [System.Reflection.Assembly]::Load("Microsoft.SQLServer.Management
 # Create a connection to the server
 $sqlConnectionString = "Data Source=" + $TargetServerName + ";Initial Catalog=master;Integrated Security=SSPI;"
 $sqlConnection = New-Object System.Data.SqlClient.SqlConnection $sqlConnectionString
+
 
 
 # Create the Integration Services object
@@ -35,3 +36,5 @@ Write-Host "Deploying " $ProjectName " project ..."
 $folder.DeployProject($ProjectName, $projectFile)
 
 Write-Host "Done."
+
+
