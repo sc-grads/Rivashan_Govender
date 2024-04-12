@@ -1,0 +1,29 @@
+name: SSIS Deployment Workflow
+
+on:
+  push:
+    branches:
+      - main  # Change this to match your main branch name
+
+jobs:
+  deploy:
+    runs-on: windows-latest  # Specify the operating system you want to run your script on
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2  # This step checks out your repository's code
+
+    - name: Set up PowerShell environment
+      uses: microsoft/powershell@v1  # This step sets up the PowerShell environment
+
+    - name: Install NuGet Package Provider
+      run: Install-PackageProvider -Name NuGet -Force
+
+    - name: Install SSIS DLL
+      run: Install-Package Microsoft.SqlServer.Management.IntegrationServices -Force
+
+    - name: Run PowerShell script
+      shell: pwsh
+      run: |
+        # Execute your PowerShell script here
+        PwrShellScripts/DeplomentSSIS.ps1
