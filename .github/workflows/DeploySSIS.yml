@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: windows-latest  # Specify the operating system you want to run your script on
+    runs-on: ubuntu-latest  # Specify the operating system you want to run your script on
 
     steps:
     - name: Checkout repository
@@ -15,30 +15,13 @@ jobs:
       
     - name: Download and run MSSQL Docker container
       run: |
-          docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=YourStrong@Password122' -p 1433:1433 -d --name mssql-server -v $(pwd):/scripts mcr.microsoft.com/mssql/server:2019-latest
+          sudo docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=YourStrong@Password122' -p 1433:1433 -d --name mssql-server -v $(pwd):/scripts mcr.microsoft.com/mssql/server:2019-latest
 
     - name: Wait for MSSQL to start
       run: |
           echo "Waiting for MSSQL server to start..."
           sleep 10 # Wait for 10 seconds
 
-    - name: Set up Chocolatey
-      shell: pwsh
+    - name: Install PowerShell Core
       run: |
-        Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-
-    - name: Install NuGet Package Provider
-      shell: pwsh
-      run: |
-        choco install nuget.commandline -y
-
-    - name: Install SSIS DLL
-      shell: pwsh
-      run: |
-        Install-Package Microsoft.SqlServer.Management.IntegrationServices -Force
-
-    - name: Run PowerShell script
-      shell: pwsh
-      run: |
-        # Execute your PowerShell script here
-        PwrShellScripts/DeplomentSSIS.ps1
+          sudo apt-get update
