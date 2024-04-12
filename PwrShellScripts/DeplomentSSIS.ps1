@@ -3,8 +3,6 @@ $SSISNamespace = "DatabaseAdministration/SSIS/Microsoft.SqlServer.Management.Int
 $TargetServerName = "0.tcp.eu.ngrok.io,10013"  # Update with your server name and port
 $TargetDatabase = "GraduateDB"  # Update with your target database name
 $TargetFolderName = "GraduateDB"
-
-$ProjectFilePath = "PwrShellScripts/DeplomentSSIS.ps1"
 $ProjectFilePath = "DatabaseAdministration/SSIS/ispac/GraduateMultiFile.ispac"
 $ProjectName = "GraduateMultiFile"
 $Username = "AutomationUser"
