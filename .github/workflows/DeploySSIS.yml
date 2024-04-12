@@ -1,0 +1,33 @@
+name: SSIS Deployment Workflow
+
+on:
+  push:
+    branches:
+      - main  # Change this to match your main branch name
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # Specify the operating system you want to run your script on
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2  # This step checks out your repository's code
+      
+    - name: Download and run MSSQL Docker container
+      run: |
+          sudo docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=YourStrong@Password122' -p 1433:1433 -d --name mssql-server -v $(pwd):/scripts mcr.microsoft.com/mssql/server:2019-latest
+
+    - name: Wait for MSSQL to start
+      run: |
+          echo "Waiting for MSSQL server to start..."
+          sleep 10 # Wait for 10 seconds
+
+    - name: Install PowerShell Core
+      run: |
+          sudo apt-get update
+          sudo apt-get install -y powershell
+
+    - name: Run PowerShell script
+      run: |
+        # Execute your PowerShell script here
+        pwsh -File PwrShellScripts/DeplomentSSIS.ps1
