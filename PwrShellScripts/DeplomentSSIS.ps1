@@ -1,5 +1,5 @@
 # Variables
-$SSISNamespace = "Microsoft.SqlServer.Management.IntegrationServices"
+$SSISNamespace = "DatabaseAdministration/SSIS/Microsoft.SqlServer.Management.IntegrationServices.dll"
 $TargetServerName = "0.tcp.eu.ngrok.io,10013"  # Update with your server name and port
 $TargetDatabase = "GraduateDB"  # Update with your target database name
 $TargetFolderName = "GraduateDB"
