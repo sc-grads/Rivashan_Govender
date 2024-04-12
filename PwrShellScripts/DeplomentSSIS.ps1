@@ -8,7 +8,7 @@ $ProjectName = "GraduateMultiFile"
 $Username = "AutomationUser"
 $Password = "Bow34908"
 
-Add-Type -Path "C:\Program Files (x86)\Microsoft SQL Server Management Studio 19\Common7\IDE\CommonExtensions\Microsoft\SSIS\160\Binn\150References\SMO\Microsoft.SqlServer.Dmf.Common.dll"
+Add-Type -Path "DatabaseAdministration/SSIS/Microsoft.SqlServer.Dmf.Common.DLL"
 # Create the SQL connection string with SQL Server Authentication
 $sqlConnectionString = "Data Source=$TargetServerName;Initial Catalog=$TargetDatabase;User ID=$Username;Password=$Password;"
 $sqlConnection = New-Object System.Data.SqlClient.SqlConnection $sqlConnectionString
