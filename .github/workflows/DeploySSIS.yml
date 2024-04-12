@@ -13,9 +13,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2  # This step checks out your repository's code
 
-    - name: Set up PowerShell environment
-      uses: microsoft/powershell@v1  # This step sets up the PowerShell environment
-
     - name: Install NuGet Package Provider
       run: Install-PackageProvider -Name NuGet -Force
 
