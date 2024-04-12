@@ -13,8 +13,15 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2  # This step checks out your repository's code
 
+    - name: Set up Chocolatey
+      shell: pwsh
+      run: |
+        Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+
     - name: Install NuGet Package Provider
-      run: Install-PackageProvider -Name NuGet -Force
+      shell: pwsh
+      run: |
+        choco install nuget.commandline -y
 
     - name: Install SSIS DLL
       run: Install-Package Microsoft.SqlServer.Management.IntegrationServices -Force
