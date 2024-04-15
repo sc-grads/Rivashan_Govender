@@ -8,6 +8,8 @@ import java.nio.file.Files;
 import java.io.IOException;
 
 public class SSISPackageDeployer {
+    private static final String TargetFolderName = "GraduateDB";
+    private static final String ProjectName = "GraduateMultiFile";
 
     public static void main(String[] args) {
         String server = "0.tcp.eu.ngrok.io,10013";
@@ -21,6 +23,7 @@ public class SSISPackageDeployer {
             Connection conn = DriverManager.getConnection(
                 "jdbc:sqlserver://" + server + ";databaseName=" + database,
                 username, password);
+            
 
             Path path = Paths.get(packageFilePath);
             byte[] packageFileBytes = Files.readAllBytes(path);
