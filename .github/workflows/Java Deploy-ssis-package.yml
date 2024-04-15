@@ -27,7 +27,7 @@ jobs:
       run: javac -cp .:mssql-jdbc.jar scripts/SSISPackageDeployer.java
 
     - name: Run Java program
-      run: java -cp .:mssql-jdbc.jar scripts.SSISPackageDeployer
+      run: java -cp .:mssql-jdbc.jar scripts/SSISPackageDeployer
       env:
         SERVER_ADDRESS: ${{ secrets.SQLDB_SERVER }}
         DATABASE: "SSISDB"  # Set to the name of your SSISDB database
