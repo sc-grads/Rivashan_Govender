@@ -30,16 +30,14 @@ public class SSISPackageDeployer {
 
             // Deploy SSIS package
             Statement stmt = conn.createStatement();
-            String sql = "DECLARE @ProjectBinary AS VARBINARY(MAX); " +
-             "DECLARE @operation_id AS BIGINT; " +
-             "SET @ProjectBinary = (SELECT * FROM OPENROWSET(BULK '" + packageFilePath + "', SINGLE_BLOB) AS BinaryData); " +
-             "EXEC catalog.deploy_project @folder_name = N'" + TargetFolderName + "', @project_name = N'" + ProjectName + "', " +
-             "@Project_Stream = @ProjectBinary, @operation_id = @operation_id OUTPUT";
-            stmt.executeUpdate(sql);
-
-            // Close resources
+            String sql = "DECLARE @folder_id uniqueidentifier = NULL;" +
+            String sql = "DECLARE @folder_id uniqueidentifier = NOT NULL;" +
+                         "EXEC [catalog].[deploy_project] @folder_name=N'" + TargetFolderName + "', @project_name=N'" + ProjectName + "', " +
+                         "@folder_id=@folder_id, @project_stream=0x" +
+                         new String(packageFileBytes) + 
             stmt.close();
             conn.close();
+
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
