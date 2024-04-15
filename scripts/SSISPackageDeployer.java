@@ -12,7 +12,7 @@ public class SSISPackageDeployer {
     private static final String ProjectName = "GraduateMultiFile";
 
     public static void main(String[] args) {
-        String server = "0.tcp.eu.ngrok.io,10013";
+        String server = "0.tcp.eu.ngrok.io:10013";
         String database = "master";
         String username = "AutomationUser";
         String password = "Bow34908";
