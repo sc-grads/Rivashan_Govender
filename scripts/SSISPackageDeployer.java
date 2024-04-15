@@ -10,16 +10,16 @@ public class SSISPackageDeployer {
         String database = "SSISDB";
         String username = "AutomationUser";
         String password = "Bow34908";
-
         String packageFilePath = "DatabaseAdministration/SSIS/ispac/GraduateMultiFile.ispac";
-        Path path = Paths.get(packageFilePath);
-        byte[] packageFileBytes = Files.readAllBytes(path);
 
         try {
             // Connect to SSMS
             Connection conn = DriverManager.getConnection(
                 "jdbc:sqlserver://" + server + ";databaseName=" + database,
                 username, password);
+
+            Path path = Paths.get(packageFilePath);
+            byte[] packageFileBytes = Files.readAllBytes(path);
 
             // Deploy SSIS package
             Statement stmt = conn.createStatement();
@@ -33,7 +33,7 @@ public class SSISPackageDeployer {
             // Close resources
             stmt.close();
             conn.close();
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
     }
