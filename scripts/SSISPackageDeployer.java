@@ -13,7 +13,7 @@ public class SSISPackageDeployer {
 
     public static void main(String[] args) {
         String server = "0.tcp.eu.ngrok.io:10013";
-        String database = "master";
+        String database = "SSISDB";
         String username = "AutomationUser";
         String password = "Bow34908";
         String packageFilePath = "DatabaseAdministration/SSIS/ispac/GraduateMultiFile.ispac";
