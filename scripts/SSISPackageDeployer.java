@@ -28,7 +28,7 @@ public class SSISPackageDeployer {
             // Deploy SSIS package
             Statement stmt = conn.createStatement();
             String sql = "DECLARE @folder_id uniqueidentifier = NULL;" +
-                         "EXEC [catalog].[deploy_project] @folder_name=N'" + GraduateDB + "', @project_name=N'" + GraduateMultiFile+ "', " +
+                         "EXEC [catalog].[deploy_project] @folder_name=N'" + TargetFolderName + "', @project_name=N'" + ProjectName + "', " +
                          "@folder_id=@folder_id, @project_stream=0x" +
                          new String(packageFileBytes) +  // Replace with the binary stream of your .ispac file
                          "@operation_id=@operation_id OUTPUT, @operation_messages=@operation_messages OUTPUT";
