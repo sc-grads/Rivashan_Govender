@@ -30,11 +30,11 @@ public class SSISPackageDeployer {
 
             // Deploy SSIS package
             Statement stmt = conn.createStatement();
-            String sql = "DECLARE @folder_id uniqueidentifier = NOT NULL;" +
-                         "EXEC [catalog].[deploy_project] @folder_name=N'" + TargetFolderName + "', @project_name=N'" + ProjectName + "', " +
-                         "@folder_id=@folder_id, @project_stream=0x" +
-                         new String(packageFileBytes) +  // Replace with the binary stream of your .ispac file
-                         "@operation_id=@operation_id OUTPUT, @operation_messages=@operation_messages OUTPUT";
+            String sql = "DECLARE @ProjectBinary AS VARBINARY(MAX); " +
+             "DECLARE @operation_id AS BIGINT; " +
+             "SET @ProjectBinary = (SELECT * FROM OPENROWSET(BULK '" + packageFilePath + "', SINGLE_BLOB) AS BinaryData); " +
+             "EXEC catalog.deploy_project @folder_name = N'" + TargetFolderName + "', @project_name = N'" + ProjectName + "', " +
+             "@Project_Stream = @ProjectBinary, @operation_id = @operation_id OUTPUT";
             stmt.executeUpdate(sql);
 
             // Close resources
