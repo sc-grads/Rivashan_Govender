@@ -19,12 +19,17 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
 
-    - name: Build and run Java program
+    - name: Download JDBC driver
       run: |
-        javac scripts/SSISPackageDeployer.java
-        java -cp scripts SSISPackageDeployer
+        wget https://repo1.maven.org/maven2/com/microsoft/sqlserver/mssql-jdbc/9.4.0.jre11/mssql-jdbc-9.4.0.jre11.jar -O mssql-jdbc.jar
+
+    - name: Compile Java code
+      run: javac -cp .:mssql-jdbc.jar scripts/SSISPackageDeployer.java
+
+    - name: Run Java program
+      run: java -cp .:mssql-jdbc.jar scripts.SSISPackageDeployer
       env:
-        SERVER_ADDRESS: ${{ secrets.SQLDB_SERVER}}
+        SERVER_ADDRESS: ${{ secrets.SQLDB_SERVER }}
         DATABASE: "SSISDB"  # Set to the name of your SSISDB database
         USERNAME: ${{ secrets.SQLDB_USERNAME }}
         PASSWORD: ${{ secrets.SQLDB_PASSWORD }}
