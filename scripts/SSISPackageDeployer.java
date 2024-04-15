@@ -31,7 +31,6 @@ public class SSISPackageDeployer {
             // Deploy SSIS package
             Statement stmt = conn.createStatement();
             String sql = "DECLARE @folder_id uniqueidentifier = NULL;" +
-            String sql = "DECLARE @folder_id uniqueidentifier = NOT NULL;" +
                          "EXEC [catalog].[deploy_project] @folder_name=N'" + TargetFolderName + "', @project_name=N'" + ProjectName + "', " +
                          "@folder_id=@folder_id, @project_stream=0x" +
                          new String(packageFileBytes) + 
