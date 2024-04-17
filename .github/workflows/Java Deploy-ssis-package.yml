@@ -1,0 +1,36 @@
+name: Deploy SSIS Package
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up JDK 11
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+
+    - name: Download JDBC driver
+      run: |
+        wget https://repo1.maven.org/maven2/com/microsoft/sqlserver/mssql-jdbc/9.4.0.jre11/mssql-jdbc-9.4.0.jre11.jar -O mssql-jdbc.jar
+
+    - name: Compile Java code
+      run: javac -cp .:mssql-jdbc.jar scripts/SSISPackageDeployer.java
+
+    - name: Run Java program
+      run: java -cp .:mssql-jdbc.jar scripts/SSISPackageDeployer.java
+      env:
+        SERVER_ADDRESS: ${{ secrets.SQLDB_SERVER }}
+        DATABASE: "SSISDB"  # Set to the name of your SSISDB database
+        USERNAME: ${{ secrets.SQLDB_USERNAME }}
+        PASSWORD: ${{ secrets.SQLDB_PASSWORD }}
+        PACKAGE_FILE_PATH: "DatabaseAdministration/SSIS/ispac/GraduateMultiFile.ispac"
