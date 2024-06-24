@@ -1,0 +1,104 @@
+table 'New Employees (INTERSECT)'
+	lineageTag: f5e4df1f-b9db-4c53-ac96-04ae2410afab
+
+	column staff_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 5215ba7c-a88a-4890-b0e3-e6d32d5e3aec
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: Employee Lookup[staff_id]
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_name
+		dataType: string
+		lineageTag: 3b39c972-ba5f-4f0c-b9e5-315a903ffb29
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: Employee Lookup[first_name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_name
+		dataType: string
+		lineageTag: 9aba50a6-6d34-4b6a-b6b1-13dc0379dd30
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: Employee Lookup[last_name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column position
+		dataType: string
+		lineageTag: 68eb0353-f8f2-41f4-be9b-4b8b3dc183f5
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: Employee Lookup[position]
+
+		annotation SummarizationSetBy = Automatic
+
+	column start_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f62b5f0a-5019-4005-863c-abcbf7c22649
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: Employee Lookup[start_date]
+
+		variation Variation
+			isDefault
+			relationship: 9257e735-eddc-4406-8ea1-0d2c75df1c2b
+			defaultHierarchy: LocalDateTable_90e6d44e-8e2e-4117-97cc-2a5c3661c2d0.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column location
+		dataType: string
+		lineageTag: 566f216f-9c68-490c-a362-bf8f9103901a
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: Employee Lookup[location]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Revenue
+		dataType: double
+		lineageTag: 382d348d-37e3-4ce6-a47e-5433487e18e7
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Revenue]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'New Employees (INTERSECT)' = calculated
+		mode: import
+		source =
+				
+				INTERSECT(
+				    ADDCOLUMNS(
+				        'Employee Lookup',
+				        "Revenue",
+				        [Customer Sales]
+				    ),
+				    ADDCOLUMNS(
+				        FILTER(
+				        'Employee Lookup',
+				        'Employee Lookup'[start_date] > DATE(2016, 12,31)
+				        ),
+				        "Revenue",
+				        [Customer Sales]
+				    )
+				)
+
+	annotation PBI_Id = c73d47d9e2d1464e992973874b8c9ce7
+

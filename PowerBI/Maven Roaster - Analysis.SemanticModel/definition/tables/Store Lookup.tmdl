@@ -1,0 +1,109 @@
+table 'Store Lookup'
+	lineageTag: aee0550e-2f4b-40d4-af71-1eb6fe62c708
+
+	column store_id
+		dataType: int64
+		formatString: 0
+		lineageTag: d8d4f015-ad67-4a2b-99b4-506c08247bf3
+		summarizeBy: none
+		sourceColumn: store_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_type
+		dataType: string
+		lineageTag: 8b63dc46-2dd2-46f3-a1e6-458b4ebbf8d7
+		summarizeBy: none
+		sourceColumn: store_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_square_feet
+		dataType: int64
+		formatString: 0
+		lineageTag: fe855590-ad54-4186-83d4-b0df1839eb95
+		summarizeBy: sum
+		sourceColumn: store_square_feet
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_address
+		dataType: string
+		lineageTag: fe636dc7-c177-4f43-ac61-547a1e0cf44c
+		summarizeBy: none
+		sourceColumn: store_address
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_city
+		dataType: string
+		lineageTag: d7090be6-7beb-4bab-a07d-0128e5fcc0b6
+		summarizeBy: none
+		sourceColumn: store_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_state_province
+		dataType: string
+		lineageTag: ff7a870c-6e70-4574-a694-a752e39cdfc1
+		summarizeBy: none
+		sourceColumn: store_state_province
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_postal_code
+		dataType: int64
+		formatString: 0
+		lineageTag: 6f4f319f-0d8e-4dcc-a4e6-449097aa66a1
+		summarizeBy: sum
+		sourceColumn: store_postal_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_longitude
+		dataType: string
+		lineageTag: ca6580ea-ea00-4688-8440-4530da42cdf3
+		summarizeBy: none
+		sourceColumn: store_longitude
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_latitude
+		dataType: string
+		lineageTag: 5726a30d-04ed-4079-adce-ca93d9f3c673
+		summarizeBy: none
+		sourceColumn: store_latitude
+
+		annotation SummarizationSetBy = Automatic
+
+	column manager
+		dataType: int64
+		formatString: 0
+		lineageTag: 453a6efd-26e0-49fc-bdd2-bbfb4db670b7
+		summarizeBy: sum
+		sourceColumn: manager
+
+		annotation SummarizationSetBy = Automatic
+
+	column Neighorhood
+		dataType: string
+		lineageTag: e874975d-642b-4f21-b4cc-9a76ebf3dbb1
+		summarizeBy: none
+		sourceColumn: Neighorhood
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Store Lookup' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Rivashan Govender\Downloads\Udemy Resources\Microsoft Power BI Desktop Advanced DAX for Data Analysis\Advanced+DAX+Data+Files\Advanced DAX Data Files\Store Lookup.csv"),[Delimiter=",", Columns=11, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"store_id", Int64.Type}, {"store_type", type text}, {"store_square_feet", Int64.Type}, {"store_address", type text}, {"store_city", type text}, {"store_state_province", type text}, {"store_postal_code", Int64.Type}, {"store_longitude", type text}, {"store_latitude", type text}, {"manager", Int64.Type}, {"Neighorhood", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

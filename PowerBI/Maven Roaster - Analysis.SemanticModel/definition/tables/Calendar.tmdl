@@ -1,0 +1,187 @@
+table Calendar
+	lineageTag: 4df92728-e275-4ab7-bc16-460052f867b2
+
+	column Transaction_Date
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: b51bfb2c-4107-4c1e-b7f0-89d5566bf15c
+		summarizeBy: none
+		sourceColumn: Transaction_Date
+
+		variation Variation
+			isDefault
+			relationship: 7df7d14e-0ab8-4372-b329-2788d498b75a
+			defaultHierarchy: LocalDateTable_418d5b00-6639-4d62-9b9a-90b33ceadd80.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Date_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: f7611e08-57b6-4a7a-ad3f-3e3b37068bce
+		summarizeBy: count
+		sourceColumn: Date_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Week_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: a6ba0b22-c018-4281-aa81-9c715b883d0e
+		summarizeBy: count
+		sourceColumn: Week_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Week_Desc
+		dataType: string
+		lineageTag: c82c7c97-bc74-4ce4-94ea-14ca9b4944dd
+		summarizeBy: none
+		sourceColumn: Week_Desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: ae716f96-fab0-4bd2-a115-a4aaa4b12977
+		summarizeBy: count
+		sourceColumn: Month_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month_Name
+		dataType: string
+		lineageTag: 547f4c35-48ea-486d-8e44-74d981c3205a
+		summarizeBy: none
+		sourceColumn: Month_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 8423674a-b42d-46fa-b952-435ee514fd96
+		summarizeBy: count
+		sourceColumn: Quarter_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter_Name
+		dataType: string
+		lineageTag: 037c9ae7-6fc5-4478-8907-167cc348b39e
+		summarizeBy: none
+		sourceColumn: Quarter_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 66bddfb4-191d-4144-b715-068e3e09ae28
+		summarizeBy: count
+		sourceColumn: Year_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Week_Year
+		dataType: string
+		lineageTag: 9a57f416-8833-4e9a-9693-f5d976de8791
+		summarizeBy: none
+		sourceColumn: Week_Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISNUMBER = ```
+			
+			 ISTEXT('Calendar'[Week_Desc])
+			```
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c09a055e-5514-41aa-8073-8f237ba7a075
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date Format (yyyy-mm-dd)' =
+			
+			FORMAT (
+			    'Calendar' [Transaction_Date],
+			    "yyyy-mm-dd"
+			)
+		dataType: string
+		lineageTag: 7f9659aa-b6ad-4646-bfa3-704ac46b998f
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column '• Year Half' =
+			
+			SWITCH(
+			    'Calendar' [Month_ID],
+			    1, "1H",
+			    2, "1H",
+			    3, "1H",
+			    4, "1H",
+			    5, "1H",
+			    6, "1H",
+			    7, "2H",
+			    8, "2H",
+			    9, "2H",
+			    10, "2H",
+			    11, "2H",
+			    12, "2H",
+			    "_"
+			)
+		dataType: string
+		lineageTag: 89b68504-a979-440d-8956-19078021f5f2
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quarter & Year' =
+			
+			VAR Q1 = 'Calendar' [Month_ID] IN {1,2,3}
+			VAR Q2 = 'Calendar' [Month_ID] IN {4,5,6}
+			VAR Q3 = 'Calendar' [Month_ID] IN {7,8,9}
+			VAR Q4 = 'Calendar' [Month_ID] IN {10,11,12}
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    Q1, "Q1" & "-" & 'Calendar' [Year_ID],
+			    Q2, "Q2" & "-" & 'Calendar' [Year_ID],
+			    Q3, "Q3" & "-" & 'Calendar' [Year_ID],
+			    Q4, "Q4" & "-" & 'Calendar' [Year_ID],
+			    "-"
+			)
+		dataType: string
+		lineageTag: b26ba193-5cf6-4e7a-8c63-9a62306118c4
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calendar = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Rivashan Govender\Downloads\Udemy Resources\Microsoft Power BI Desktop Advanced DAX for Data Analysis\Advanced+DAX+Data+Files\Advanced DAX Data Files\Calendar.csv"),[Delimiter=",", Columns=10, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Transaction_Date", type date}, {"Date_ID", Int64.Type}, {"Week_ID", Int64.Type}, {"Week_Desc", type text}, {"Month_ID", Int64.Type}, {"Month_Name", type text}, {"Quarter_ID", Int64.Type}, {"Quarter_Name", type text}, {"Year_ID", Int64.Type}, {"Week_Year", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

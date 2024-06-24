@@ -1,0 +1,35 @@
+table 'TREATAS Demo'
+	lineageTag: 0ba3b9c5-50e3-4187-ab19-f583922054aa
+
+	column store_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 054a75a6-95e2-420b-9b31-5d11643e6892
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: Store Lookup[store_id]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'TREATAS Demo' = calculated
+		mode: import
+		source =
+				
+				VAR StoreID =
+				{
+				    "1",
+				    "2",
+				    "3",
+				    "4",
+				    "5",
+				    "6"
+				}
+				RETURN
+				TREATAS(
+				    StoreID,
+				    'Store Lookup'[store_id]
+				)
+
+	annotation PBI_Id = 0a72c5e3ad2e40ac8a58468c7061af4e
+

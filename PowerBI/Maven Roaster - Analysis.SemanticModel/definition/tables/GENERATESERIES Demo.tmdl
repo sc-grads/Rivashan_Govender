@@ -1,0 +1,27 @@
+table 'GENERATESERIES Demo'
+	lineageTag: 278baa58-d363-4c49-87a4-1ac5e8d7da0f
+
+	column Value
+		dataType: double
+		lineageTag: 95475a69-e681-4158-b19a-1aa9a65e4449
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'GENERATESERIES Demo' = calculated
+		mode: import
+		source = ```
+				
+				GENERATESERIES(
+				    -50.5, 
+				    50.5  
+				)
+				```
+
+	annotation PBI_Id = 970a1913ac9040edb4cdd477d3b3ec60
+

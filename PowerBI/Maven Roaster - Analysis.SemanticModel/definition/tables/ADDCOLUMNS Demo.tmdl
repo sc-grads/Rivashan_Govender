@@ -1,0 +1,108 @@
+table 'ADDCOLUMNS Demo'
+	lineageTag: 765da060-e231-483a-bc06-8abc587adb33
+
+	column 'Employee ID'
+		dataType: int64
+		formatString: 0
+		lineageTag: 832ac5fe-ef73-447e-a9ac-232bf52e4ce3
+		summarizeBy: count
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Employee ID]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Manager Name & Store'
+		dataType: string
+		lineageTag: 027e1553-917c-45b6-98e5-9af0abc5c333
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Manager Name & Store]
+
+		annotation SummarizationSetBy = Automatic
+
+	column staff_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 1788aad4-1a10-4765-a3fb-08c018d6119a
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: Employee Lookup[staff_id]
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_name
+		dataType: string
+		lineageTag: cca25502-b8d0-4a4f-b977-7c3d5682a010
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: Employee Lookup[first_name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_name
+		dataType: string
+		lineageTag: 11d840ef-58c0-4ffa-8d2d-698c354983a2
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: Employee Lookup[last_name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column position
+		dataType: string
+		lineageTag: d5e4a559-4b16-4cb0-ab7d-3ccbf6d6ed60
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: Employee Lookup[position]
+
+		annotation SummarizationSetBy = Automatic
+
+	column start_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4c2e980c-ac65-40c0-925d-7daa79722b8c
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: Employee Lookup[start_date]
+
+		variation Variation
+			isDefault
+			relationship: de018395-84b8-4f26-a46e-dbfc03285554
+			defaultHierarchy: LocalDateTable_a35e6935-65ca-492d-9091-89e8e1ebfb46.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column location
+		dataType: string
+		lineageTag: dd2f8c74-e628-4993-9dcd-60d33b851eec
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: Employee Lookup[location]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'ADDCOLUMNS Demo' = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS(
+				    FILTER(
+				        'Employee Lookup',
+				        'Employee Lookup' [staff_id] IN {6,16,31}
+				    ),
+				    "Employee ID",
+				    'Employee Lookup' [staff_id],
+				    "Manager Name & Store",
+				    'Employee Lookup' [first_name] & " " & 'Employee Lookup' [last_name] & "-" & 'Employee Lookup' [location]
+				)
+
+	annotation PBI_Id = eaf8e3e6ffca4a4b80582700ba45b46f
+

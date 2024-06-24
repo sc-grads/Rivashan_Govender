@@ -1,0 +1,86 @@
+relationship 7df7d14e-0ab8-4372-b329-2788d498b75a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendar.Transaction_Date
+	toColumn: LocalDateTable_418d5b00-6639-4d62-9b9a-90b33ceadd80.Date
+
+relationship a4c1edaa-4843-4360-aa22-b0301be38216
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Customer Lookup'.customer_since
+	toColumn: LocalDateTable_135e50b1-bccc-45e0-aa06-78b5092657af.Date
+
+relationship b2686902-935d-47b1-aa6c-5d719431a9f5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Customer Lookup'.birthdate
+	toColumn: LocalDateTable_38a5449e-f824-4b56-9b99-642debd79e41.Date
+
+relationship 984c785b-86e6-4ee7-9db7-aaf5ecdd150e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Employee Lookup'.start_date
+	toColumn: LocalDateTable_24d2ea5b-9f80-41a8-86da-3be25896dd10.Date
+
+relationship 87511b8d-0f0f-e6f7-30b6-185dfa8db04f
+	fromColumn: 'Sales by Store'.transaction_date
+	toColumn: Calendar.Transaction_Date
+
+relationship 31c0c454-a9a8-b8ec-183d-cc4814c829a5
+	fromColumn: 'Food Inventory'.transaction_date
+	toColumn: Calendar.Transaction_Date
+
+relationship 572f31c9-cc2d-8850-15ea-827bed02b96f
+	fromColumn: 'Sales by Store'.customer_id
+	toColumn: 'Customer Lookup'.customer_id
+
+relationship 0193f30f-467f-a422-75f0-995c568e9ced
+	fromColumn: 'Sales by Store'.staff_id
+	toColumn: 'Employee Lookup'.staff_id
+
+relationship 0b215230-8dbb-1e06-baa3-024f99c521f1
+	fromColumn: 'Sales by Store'.product_id
+	toColumn: 'Product Lookup'.product_id
+
+relationship 7ff2af3e-5e39-b4f5-a7a3-bd994e78143c
+	fromColumn: 'Food Inventory'.product_id
+	toColumn: 'Product Lookup'.product_id
+
+relationship d69f5481-3032-380c-e901-408194171ba4
+	fromColumn: 'Sales by Store'.store_id
+	toColumn: 'Store Lookup'.store_id
+
+relationship bfdcef0d-71c9-f7be-ea3f-badc9f73271f
+	fromColumn: 'Food Inventory'.store_id
+	toColumn: 'Store Lookup'.store_id
+
+relationship de018395-84b8-4f26-a46e-dbfc03285554
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'ADDCOLUMNS Demo'.start_date
+	toColumn: LocalDateTable_a35e6935-65ca-492d-9091-89e8e1ebfb46.Date
+
+relationship b0f94aae-434a-4fca-abfd-41befc308ea3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Unsold Pastries'.transaction_date
+	toColumn: LocalDateTable_f794e63f-9705-447c-a2d5-86c22b232670.Date
+
+relationship 1213824a-631f-4670-a884-756007986952
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'EXCEPT Demo'.customer_since
+	toColumn: LocalDateTable_0cf22257-3f25-4337-9b1d-d1944931477c.Date
+
+relationship 69442098-c967-4ea7-92dd-7d34bfd7b9e9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'EXCEPT Demo'.birthdate
+	toColumn: LocalDateTable_e1a15292-0be0-4eca-ae51-d53b116a8701.Date
+
+relationship 9257e735-eddc-4406-8ea1-0d2c75df1c2b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'New Employees (INTERSECT)'.start_date
+	toColumn: LocalDateTable_90e6d44e-8e2e-4117-97cc-2a5c3661c2d0.Date
+
+relationship 380538ec-d076-bb48-dffb-a59be6a35003
+	isActive: false
+	fromColumn: 'Food Inventory'.baked_date
+	toColumn: Calendar.Transaction_Date
+
+relationship b630df2d-d9e0-3556-745a-9f08c226c28d
+	fromColumn: 'UNION Demo'.'Store ID'
+	toColumn: 'Store Lookup'.store_id
+

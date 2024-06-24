@@ -1,0 +1,80 @@
+table 'Repeat Customer Sales (INTERSECT Assignment)'
+	lineageTag: c5b76d00-2d7f-4e52-bb33-e232fbcbf8f5
+
+	column customer_id
+		dataType: int64
+		formatString: 0
+		lineageTag: e5e42416-d97f-4898-a96f-0772f43c0ff0
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: Sales by Store[customer_id]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Revenue
+		dataType: double
+		lineageTag: 867dd527-b671-4ee4-9091-433617c8d26b
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Revenue]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Profit
+		dataType: double
+		lineageTag: 8b54664c-10bb-4ac1-82de-3383bf54eff4
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Profit]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Repeat Customer Sales (INTERSECT Assignment)' = calculated
+		mode: import
+		source = ```
+				
+				VAR PurchasedWeek45 = 
+				CALCULATETABLE(
+				    VALUES(
+				        'Sales by Store'[customer_id]
+				    ),
+				    'Calendar'[Week_ID] = 45,
+				    'Calendar'[Year_ID] = 2018
+				)
+				VAR PurchasedWeek46 = 
+				CALCULATETABLE(
+				    VALUES(
+				        'Sales by Store'[customer_id]
+				    ),
+				    'Calendar'[Week_ID] = 46,
+				    'Calendar'[Year_ID] = 2018
+				)
+				VAR ReturningCustomers = 
+				INTERSECT(
+				    PurchasedWeek45,
+				    PurchasedWeek46
+				)
+				VAR Revenue_Profit = 
+				CALCULATETABLE(
+				    ADDCOLUMNS(
+				        ReturningCustomers,
+				        "Revenue",
+				        [Customer Sales],
+				        "Profit",
+				        [Profit]
+				    ),
+				    'Calendar'[Week_ID] = 46
+				)
+				RETURN
+				Revenue_Profit
+				```
+
+	annotation PBI_Id = 2bc9a3205c5d481dbfc79d4189afd4fb
+

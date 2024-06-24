@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Maven Roaster - Analysis"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "ebe7d3a7-3771-4262-9cf7-de33fa7078a1"
+  }
+}
