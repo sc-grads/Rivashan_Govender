@@ -1,0 +1,374 @@
+{
+  "name": "e8435b81e956dd71035b",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 14,
+        "y": 250,
+        "z": 1000,
+        "width": 372,
+        "height": 288,
+        "tabOrder": 1000
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "pieChart",
+    "projections": {
+      "Category": [
+        {
+          "queryRef": "Geography.GeographyLocation",
+          "active": true
+        }
+      ],
+      "Y": [
+        {
+          "queryRef": "Calculations.Total Customers"
+        }
+      ]
+    },
+    "prototypeQuery": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "g",
+          "Entity": "Geography",
+          "Type": 0
+        },
+        {
+          "Name": "c",
+          "Entity": "Calculations",
+          "Type": 0
+        }
+      ],
+      "Select": [
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "g"
+              }
+            },
+            "Property": "GeographyLocation"
+          },
+          "Name": "Geography.GeographyLocation",
+          "NativeReferenceName": "GeographyLocation"
+        },
+        {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "c"
+              }
+            },
+            "Property": "Total Customers"
+          },
+          "Name": "Calculations.Total Customers",
+          "NativeReferenceName": "Total Customers"
+        }
+      ],
+      "OrderBy": [
+        {
+          "Direction": 2,
+          "Expression": {
+            "Measure": {
+              "Expression": {
+                "SourceRef": {
+                  "Source": "c"
+                }
+              },
+              "Property": "Total Customers"
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true,
+    "hasDefaultSort": true,
+    "objects": {
+      "legend": [
+        {
+          "properties": {
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'BottomCenter'"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Tahoma'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0E5595'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "CreditCard"
+                          }
+                        },
+                        "Property": "Category"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'non credit card holder'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFBD61'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "CreditCard"
+                          }
+                        },
+                        "Property": "Category"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'credit card holder'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "vcObjects": {
+      "title": [
+        {
+          "properties": {
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "16D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "49D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0.1
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "21D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "preset": {
+              "expr": {
+                "Literal": {
+                  "Value": "'BottomRight'"
+                }
+              }
+            },
+            "shadowSpread": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

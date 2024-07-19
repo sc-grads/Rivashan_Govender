@@ -1,0 +1,7 @@
+﻿role GermanyRegion
+	modelPermission: read
+
+	tablePermission Geography = [GeographyLocation] == "Germany"
+
+	annotation PBI_Id = 0f0aa287af34461b87a39878d8068bd1
+

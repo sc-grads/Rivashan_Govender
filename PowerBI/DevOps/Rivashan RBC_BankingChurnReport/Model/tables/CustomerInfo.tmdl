@@ -1,0 +1,29 @@
+﻿table CustomerInfo
+
+	column CustomerId
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: CustomerId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Surname
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Surname
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CustomerInfo = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Rivashan Govender\Downloads\YouTube -Banking Report\CustomerInfo.csv"),[Delimiter=",", Columns=2, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"CustomerId", Int64.Type}, {"Surname", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,67 @@
+{
+  "filters": {
+    "byExpr": [
+      {
+        "type": "Advanced",
+        "expression": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DateMaster"
+              }
+            },
+            "Property": "Year"
+          }
+        },
+        "howCreated": 0
+      }
+    ]
+  },
+  "singleVisual": {
+    "visualType": "slicer",
+    "objects": {
+      "merge": {
+        "data": [
+          {
+            "properties": {
+              "mode": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Dropdown'"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "selection": [
+          {
+            "properties": {
+              "strictSingleSelect": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "activeProjections": {
+      "Values": [
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DateMaster"
+              }
+            },
+            "Property": "Year"
+          }
+        }
+      ]
+    }
+  }
+}

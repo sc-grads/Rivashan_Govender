@@ -1,0 +1,482 @@
+{
+  "name": "0b324820d2ab11b5a4a8",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 292.85714285714289,
+        "y": 172.85714285714286,
+        "z": 12000,
+        "width": 392.85714285714289,
+        "height": 268.57142857142861,
+        "tabOrder": 10000
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "clusteredColumnChart",
+    "projections": {
+      "Category": [
+        {
+          "queryRef": "DateMaster.Year",
+          "active": true
+        }
+      ],
+      "Y": [
+        {
+          "queryRef": "Calculations.Active Customers"
+        },
+        {
+          "queryRef": "Calculations.Inactive Customers"
+        }
+      ]
+    },
+    "prototypeQuery": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "c",
+          "Entity": "Calculations",
+          "Type": 0
+        },
+        {
+          "Name": "d",
+          "Entity": "DateMaster",
+          "Type": 0
+        }
+      ],
+      "Select": [
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "d"
+              }
+            },
+            "Property": "Year"
+          },
+          "Name": "DateMaster.Year",
+          "NativeReferenceName": "Year"
+        },
+        {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "c"
+              }
+            },
+            "Property": "Active Customers"
+          },
+          "Name": "Calculations.Active Customers",
+          "NativeReferenceName": "Active Customers"
+        },
+        {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "c"
+              }
+            },
+            "Property": "Inactive Customers"
+          },
+          "Name": "Calculations.Inactive Customers",
+          "NativeReferenceName": "Inactive Customers"
+        }
+      ],
+      "OrderBy": [
+        {
+          "Direction": 2,
+          "Expression": {
+            "Measure": {
+              "Expression": {
+                "SourceRef": {
+                  "Source": "c"
+                }
+              },
+              "Property": "Active Customers"
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true,
+    "hasDefaultSort": true,
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFBD61'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "ActiveCustomer"
+                          }
+                        },
+                        "Property": "ActiveCategory"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Active Member'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": -0.5
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "ActiveCustomer"
+                          }
+                        },
+                        "Property": "ActiveCategory"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Inactive Member'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": -0.25
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Calculations.Active Customers"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFBD61'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Calculations.Inactive Customers"
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "titleColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "labelPosition": {
+              "expr": {
+                "Literal": {
+                  "Value": "'InsideEnd'"
+                }
+              }
+            },
+            "labelOverflow": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "showTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "vcObjects": {
+      "title": [
+        {
+          "properties": {
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Active Customers Vs Inactive Customers By Year'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "16D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "49D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0.1
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "21D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "preset": {
+              "expr": {
+                "Literal": {
+                  "Value": "'BottomRight'"
+                }
+              }
+            },
+            "shadowSpread": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

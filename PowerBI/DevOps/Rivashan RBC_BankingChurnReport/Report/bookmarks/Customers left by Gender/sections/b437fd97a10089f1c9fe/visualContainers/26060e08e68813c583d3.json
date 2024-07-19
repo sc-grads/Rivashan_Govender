@@ -1,0 +1,52 @@
+{
+  "filters": {
+    "byExpr": [
+      {
+        "type": "Advanced",
+        "expression": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calculations"
+              }
+            },
+            "Property": "Exit Customers"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Categorical",
+        "expression": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Gender"
+              }
+            },
+            "Property": "GenderCategory"
+          }
+        },
+        "howCreated": 0
+      }
+    ]
+  },
+  "singleVisual": {
+    "visualType": "donutChart",
+    "objects": {},
+    "activeProjections": {
+      "Category": [
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Gender"
+              }
+            },
+            "Property": "GenderCategory"
+          }
+        }
+      ]
+    }
+  }
+}

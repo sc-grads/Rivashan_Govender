@@ -1,0 +1,52 @@
+{
+  "Commands": [
+    {
+      "SemanticQueryDataShapeCommand": {
+        "Query": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "DateMaster",
+              "Type": 0
+            }
+          ],
+          "Select": [
+            {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "d"
+                  }
+                },
+                "Property": "Month Name"
+              },
+              "Name": "DateMaster.Month Name",
+              "NativeReferenceName": "Month Name"
+            }
+          ]
+        },
+        "Binding": {
+          "Primary": {
+            "Groupings": [
+              {
+                "Projections": [
+                  0
+                ]
+              }
+            ]
+          },
+          "DataReduction": {
+            "DataVolume": 3,
+            "Primary": {
+              "Window": {}
+            }
+          },
+          "IncludeEmptyGroups": true,
+          "Version": 1
+        },
+        "ExecutionMetricsKind": 1
+      }
+    }
+  ]
+}

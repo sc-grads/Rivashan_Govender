@@ -1,0 +1,29 @@
+﻿table Gender
+
+	column GenderID
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: GenderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column GenderCategory
+		dataType: string
+		summarizeBy: none
+		sourceColumn: GenderCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Gender = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Rivashan Govender\Downloads\YouTube -Banking Report\Gender.xlsx"), null, true),
+				    Table1_Table = Source{[Item="Table1",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Table1_Table,{{"GenderID", Int64.Type}, {"GenderCategory", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

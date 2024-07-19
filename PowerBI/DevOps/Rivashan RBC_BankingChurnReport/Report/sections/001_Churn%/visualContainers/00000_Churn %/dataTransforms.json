@@ -1,0 +1,613 @@
+{
+  "objects": {
+    "columnHeaders": [
+      {
+        "properties": {
+          "backColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 2,
+                    "Percent": -0.25
+                  }
+                }
+              }
+            }
+          },
+          "fontColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          },
+          "fontSize": {
+            "expr": {
+              "Literal": {
+                "Value": "15D"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "rowHeaders": [
+      {
+        "properties": {
+          "backColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#E1E11A'"
+                  }
+                }
+              }
+            }
+          },
+          "fontSize": {
+            "expr": {
+              "Literal": {
+                "Value": "15D"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "values": [
+      {
+        "properties": {
+          "bandedRowHeaders": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          },
+          "fontSize": {
+            "expr": {
+              "Literal": {
+                "Value": "15D"
+              }
+            }
+          }
+        }
+      },
+      {
+        "properties": {
+          "icon": {
+            "kind": "Icon",
+            "layout": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Before'"
+                }
+              }
+            },
+            "verticalAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Top'"
+                }
+              }
+            },
+            "value": {
+              "expr": {
+                "Conditional": {
+                  "Cases": [
+                    {
+                      "Condition": {
+                        "Comparison": {
+                          "ComparisonKind": 2,
+                          "Left": {
+                            "Measure": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Calculations"
+                                }
+                              },
+                              "Property": "Churn%"
+                            }
+                          },
+                          "Right": {
+                            "RangePercent": {
+                              "Min": {
+                                "ScopedEval": {
+                                  "Expression": {
+                                    "Aggregation": {
+                                      "Expression": {
+                                        "ScopedEval": {
+                                          "Expression": {
+                                            "Measure": {
+                                              "Expression": {
+                                                "SourceRef": {
+                                                  "Entity": "Calculations"
+                                                }
+                                              },
+                                              "Property": "Churn%"
+                                            }
+                                          },
+                                          "Scope": [
+                                            {
+                                              "AllRolesRef": {}
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "Function": 3
+                                    }
+                                  },
+                                  "Scope": []
+                                }
+                              },
+                              "Max": {
+                                "ScopedEval": {
+                                  "Expression": {
+                                    "Aggregation": {
+                                      "Expression": {
+                                        "ScopedEval": {
+                                          "Expression": {
+                                            "Measure": {
+                                              "Expression": {
+                                                "SourceRef": {
+                                                  "Entity": "Calculations"
+                                                }
+                                              },
+                                              "Property": "Churn%"
+                                            }
+                                          },
+                                          "Scope": [
+                                            {
+                                              "AllRolesRef": {}
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "Function": 4
+                                    }
+                                  },
+                                  "Scope": []
+                                }
+                              },
+                              "Percent": 0.67
+                            }
+                          }
+                        }
+                      },
+                      "Value": {
+                        "Literal": {
+                          "Value": "'SignLow'"
+                        }
+                      }
+                    },
+                    {
+                      "Condition": {
+                        "And": {
+                          "Left": {
+                            "Comparison": {
+                              "ComparisonKind": 2,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "Calculations"
+                                    }
+                                  },
+                                  "Property": "Churn%"
+                                }
+                              },
+                              "Right": {
+                                "RangePercent": {
+                                  "Min": {
+                                    "ScopedEval": {
+                                      "Expression": {
+                                        "Aggregation": {
+                                          "Expression": {
+                                            "ScopedEval": {
+                                              "Expression": {
+                                                "Measure": {
+                                                  "Expression": {
+                                                    "SourceRef": {
+                                                      "Entity": "Calculations"
+                                                    }
+                                                  },
+                                                  "Property": "Churn%"
+                                                }
+                                              },
+                                              "Scope": [
+                                                {
+                                                  "AllRolesRef": {}
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "Function": 3
+                                        }
+                                      },
+                                      "Scope": []
+                                    }
+                                  },
+                                  "Max": {
+                                    "ScopedEval": {
+                                      "Expression": {
+                                        "Aggregation": {
+                                          "Expression": {
+                                            "ScopedEval": {
+                                              "Expression": {
+                                                "Measure": {
+                                                  "Expression": {
+                                                    "SourceRef": {
+                                                      "Entity": "Calculations"
+                                                    }
+                                                  },
+                                                  "Property": "Churn%"
+                                                }
+                                              },
+                                              "Scope": [
+                                                {
+                                                  "AllRolesRef": {}
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "Function": 4
+                                        }
+                                      },
+                                      "Scope": []
+                                    }
+                                  },
+                                  "Percent": 0.33
+                                }
+                              }
+                            }
+                          },
+                          "Right": {
+                            "Comparison": {
+                              "ComparisonKind": 3,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "Calculations"
+                                    }
+                                  },
+                                  "Property": "Churn%"
+                                }
+                              },
+                              "Right": {
+                                "RangePercent": {
+                                  "Min": {
+                                    "ScopedEval": {
+                                      "Expression": {
+                                        "Aggregation": {
+                                          "Expression": {
+                                            "ScopedEval": {
+                                              "Expression": {
+                                                "Measure": {
+                                                  "Expression": {
+                                                    "SourceRef": {
+                                                      "Entity": "Calculations"
+                                                    }
+                                                  },
+                                                  "Property": "Churn%"
+                                                }
+                                              },
+                                              "Scope": [
+                                                {
+                                                  "AllRolesRef": {}
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "Function": 3
+                                        }
+                                      },
+                                      "Scope": []
+                                    }
+                                  },
+                                  "Max": {
+                                    "ScopedEval": {
+                                      "Expression": {
+                                        "Aggregation": {
+                                          "Expression": {
+                                            "ScopedEval": {
+                                              "Expression": {
+                                                "Measure": {
+                                                  "Expression": {
+                                                    "SourceRef": {
+                                                      "Entity": "Calculations"
+                                                    }
+                                                  },
+                                                  "Property": "Churn%"
+                                                }
+                                              },
+                                              "Scope": [
+                                                {
+                                                  "AllRolesRef": {}
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "Function": 4
+                                        }
+                                      },
+                                      "Scope": []
+                                    }
+                                  },
+                                  "Percent": 0.67
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "Value": {
+                        "Literal": {
+                          "Value": "'SignMedium'"
+                        }
+                      }
+                    },
+                    {
+                      "Condition": {
+                        "Comparison": {
+                          "ComparisonKind": 3,
+                          "Left": {
+                            "Measure": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Calculations"
+                                }
+                              },
+                              "Property": "Churn%"
+                            }
+                          },
+                          "Right": {
+                            "RangePercent": {
+                              "Min": {
+                                "ScopedEval": {
+                                  "Expression": {
+                                    "Aggregation": {
+                                      "Expression": {
+                                        "ScopedEval": {
+                                          "Expression": {
+                                            "Measure": {
+                                              "Expression": {
+                                                "SourceRef": {
+                                                  "Entity": "Calculations"
+                                                }
+                                              },
+                                              "Property": "Churn%"
+                                            }
+                                          },
+                                          "Scope": [
+                                            {
+                                              "AllRolesRef": {}
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "Function": 3
+                                    }
+                                  },
+                                  "Scope": []
+                                }
+                              },
+                              "Max": {
+                                "ScopedEval": {
+                                  "Expression": {
+                                    "Aggregation": {
+                                      "Expression": {
+                                        "ScopedEval": {
+                                          "Expression": {
+                                            "Measure": {
+                                              "Expression": {
+                                                "SourceRef": {
+                                                  "Entity": "Calculations"
+                                                }
+                                              },
+                                              "Property": "Churn%"
+                                            }
+                                          },
+                                          "Scope": [
+                                            {
+                                              "AllRolesRef": {}
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "Function": 4
+                                    }
+                                  },
+                                  "Scope": []
+                                }
+                              },
+                              "Percent": 0.33
+                            }
+                          }
+                        }
+                      },
+                      "Value": {
+                        "Literal": {
+                          "Value": "'CircleHigh'"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "selector": {
+          "data": [
+            {
+              "dataViewWildcard": {
+                "matchingOption": 1
+              }
+            }
+          ],
+          "metadata": "Calculations.Churn%"
+        }
+      }
+    ]
+  },
+  "projectionOrdering": {
+    "Rows": [
+      0
+    ],
+    "Columns": [
+      1
+    ],
+    "Values": [
+      2
+    ]
+  },
+  "projectionActiveItems": {
+    "Rows": [
+      {
+        "queryRef": "DateMaster.Year",
+        "suppressConcat": false
+      }
+    ],
+    "Columns": [
+      {
+        "queryRef": "DateMaster.Month Name",
+        "suppressConcat": false
+      }
+    ]
+  },
+  "queryMetadata": {
+    "Select": [
+      {
+        "Restatement": "Year",
+        "Name": "DateMaster.Year",
+        "Type": 3,
+        "Format": "0"
+      },
+      {
+        "Restatement": "Month Name",
+        "Name": "DateMaster.Month Name",
+        "Type": 2048
+      },
+      {
+        "Restatement": "Churn%",
+        "Name": "Calculations.Churn%",
+        "Type": 1,
+        "Format": "0.00%;-0.00%;0.00%"
+      }
+    ]
+  },
+  "visualElements": [
+    {
+      "DataRoles": [
+        {
+          "Name": "Rows",
+          "Projection": 0,
+          "isActive": true
+        },
+        {
+          "Name": "Columns",
+          "Projection": 1,
+          "isActive": true
+        },
+        {
+          "Name": "Values",
+          "Projection": 2,
+          "isActive": false
+        }
+      ]
+    }
+  ],
+  "selects": [
+    {
+      "displayName": "Year",
+      "format": "0",
+      "queryName": "DateMaster.Year",
+      "roles": {
+        "Rows": true
+      },
+      "sort": 2,
+      "sortOrder": 0,
+      "type": {
+        "category": null,
+        "underlyingType": 260
+      },
+      "expr": {
+        "Column": {
+          "Expression": {
+            "SourceRef": {
+              "Entity": "DateMaster"
+            }
+          },
+          "Property": "Year"
+        }
+      }
+    },
+    {
+      "displayName": "Month Name",
+      "queryName": "DateMaster.Month Name",
+      "roles": {
+        "Columns": true
+      },
+      "type": {
+        "category": null,
+        "underlyingType": 1
+      },
+      "expr": {
+        "Column": {
+          "Expression": {
+            "SourceRef": {
+              "Entity": "DateMaster"
+            }
+          },
+          "Property": "Month Name"
+        }
+      }
+    },
+    {
+      "displayName": "Churn%",
+      "format": "0.00%;-0.00%;0.00%",
+      "queryName": "Calculations.Churn%",
+      "roles": {
+        "Values": true
+      },
+      "type": {
+        "category": null,
+        "underlyingType": 259
+      },
+      "expr": {
+        "Measure": {
+          "Expression": {
+            "SourceRef": {
+              "Entity": "Calculations"
+            }
+          },
+          "Property": "Churn%"
+        }
+      },
+      "relatedObjects": {
+        "values": {
+          "icon": [
+            {
+              "data": [
+                {
+                  "kind": 4,
+                  "_matchingOption": 1,
+                  "_key": {}
+                }
+              ],
+              "metadata": "Calculations.Churn%"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

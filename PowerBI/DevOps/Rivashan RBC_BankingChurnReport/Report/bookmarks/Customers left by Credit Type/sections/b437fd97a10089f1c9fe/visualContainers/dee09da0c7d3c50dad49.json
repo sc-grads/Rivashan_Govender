@@ -1,0 +1,52 @@
+{
+  "filters": {
+    "byExpr": [
+      {
+        "type": "Categorical",
+        "expression": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "CreditCard"
+              }
+            },
+            "Property": "Category"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calculations"
+              }
+            },
+            "Property": "Exit Customers"
+          }
+        },
+        "howCreated": 0
+      }
+    ]
+  },
+  "singleVisual": {
+    "visualType": "pieChart",
+    "objects": {},
+    "activeProjections": {
+      "Category": [
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "CreditCard"
+              }
+            },
+            "Property": "Category"
+          }
+        }
+      ]
+    }
+  }
+}

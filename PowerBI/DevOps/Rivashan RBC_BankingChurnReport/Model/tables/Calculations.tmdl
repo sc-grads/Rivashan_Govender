@@ -1,0 +1,52 @@
+﻿table Calculations
+
+	measure 'Active Customers' = CALCULATE(COUNT(Bank_Churn[CustomerId]),ActiveCustomers[ActiveCategory] = "Active Member")
+		formatString: 0
+
+	measure 'Total Customers' = COUNT(Bank_Churn[CustomerId])
+		formatString: 0
+
+	measure 'Inactive Customers' = [Total Customers]-[Active Customers]
+		formatString: 0
+
+	measure 'Credit Card Holder' = CALCULATE(COUNT(Bank_Churn[CustomerId]),CreditCard[Category]="Credit Card Holder")
+		formatString: 0
+
+	measure 'Non Credit Card Holder' = CALCULATE(COUNT(Bank_Churn[CustomerId]),CreditCard[Category]="Non Credit Card Holder")
+		formatString: 0
+
+	measure 'Exit Customers' = CALCULATE([Total Customers],ExitCustomer[ExitCategory]="Exit")
+		formatString: 0
+
+	measure 'Retain Customers' = CALCULATE([Total Customers],ExitCustomer[ExitCategory]="Retain")
+		formatString: 0
+
+	measure 'Previous Exit Customers' = CALCULATE([Exit Customers],PREVIOUSMONTH(DateMaster[Date]))
+		formatString: 0
+
+	measure Churn% =
+			
+			VAR EC = [Exit Customers]
+			VAR TC = [Total Customers]
+			VAR Churnper = DIVIDE(EC,TC)
+			RETURN Churnper
+		formatString: 0.00%;-0.00%;0.00%
+
+	column Column1
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calculations = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

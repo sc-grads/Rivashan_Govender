@@ -1,0 +1,65 @@
+{
+  "name": "9e3d70202221dbe99704",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 272.85714285714289,
+        "y": 165.71428571428572,
+        "z": 5000,
+        "width": 27.142857142857146,
+        "height": 534.28571428571433,
+        "tabOrder": 3000
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "shape",
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "shape": [
+        {
+          "properties": {
+            "tileShape": {
+              "expr": {
+                "Literal": {
+                  "Value": "'line'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "rotation": [
+        {
+          "properties": {
+            "shapeAngle": {
+              "expr": {
+                "Literal": {
+                  "Value": "90L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "outline": [
+        {
+          "properties": {
+            "weight": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ]
+    }
+  },
+  "howCreated": "InsertVisualButton"
+}

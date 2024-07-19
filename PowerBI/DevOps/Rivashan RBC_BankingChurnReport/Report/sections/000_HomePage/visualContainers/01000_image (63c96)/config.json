@@ -1,0 +1,38 @@
+{
+  "name": "63c96e7f57d2bb69c3bd",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 130,
+        "y": 0,
+        "z": 1000,
+        "width": 55,
+        "height": 66.666666666666671,
+        "tabOrder": 1000
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "image",
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "imageUrl": {
+              "expr": {
+                "ResourcePackageItem": {
+                  "PackageName": "RegisteredResources",
+                  "PackageType": 1,
+                  "ItemName": "Screenshot_2024-07-04_13403218689238546243114.png"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "howCreated": "InsertVisualButton"
+}

@@ -1,0 +1,246 @@
+{
+  "objects": {
+    "dataPoint": [
+      {
+        "properties": {
+          "fill": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#0E5595'"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "selector": {
+          "data": [
+            {
+              "scopeId": {
+                "Comparison": {
+                  "ComparisonKind": 0,
+                  "Left": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "CreditCard"
+                        }
+                      },
+                      "Property": "Category"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "'non credit card holder'"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "properties": {
+          "fill": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#FFBD61'"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "selector": {
+          "data": [
+            {
+              "scopeId": {
+                "Comparison": {
+                  "ComparisonKind": 0,
+                  "Left": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "CreditCard"
+                        }
+                      },
+                      "Property": "Category"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "'credit card holder'"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "legend": [
+      {
+        "properties": {
+          "fontSize": {
+            "expr": {
+              "Literal": {
+                "Value": "9D"
+              }
+            }
+          },
+          "position": {
+            "expr": {
+              "Literal": {
+                "Value": "'BottomCenter'"
+              }
+            }
+          },
+          "fontFamily": {
+            "expr": {
+              "Literal": {
+                "Value": "'Tahoma'"
+              }
+            }
+          },
+          "labelColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "labels": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        "selector": {
+          "data": [
+            {
+              "dataViewWildcard": {
+                "matchingOption": 1
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "projectionOrdering": {
+    "Category": [
+      0
+    ],
+    "Y": [
+      1
+    ]
+  },
+  "projectionActiveItems": {
+    "Category": [
+      {
+        "queryRef": "CreditCard.Category",
+        "suppressConcat": false
+      }
+    ]
+  },
+  "queryMetadata": {
+    "Select": [
+      {
+        "Restatement": "Category",
+        "Name": "CreditCard.Category",
+        "Type": 2048
+      },
+      {
+        "Restatement": "Exit Customers",
+        "Name": "Calculations.Exit Customers",
+        "Type": 3,
+        "Format": "0"
+      }
+    ]
+  },
+  "visualElements": [
+    {
+      "DataRoles": [
+        {
+          "Name": "Category",
+          "Projection": 0,
+          "isActive": true
+        },
+        {
+          "Name": "Y",
+          "Projection": 1,
+          "isActive": false
+        }
+      ]
+    }
+  ],
+  "selects": [
+    {
+      "displayName": "Category",
+      "queryName": "CreditCard.Category",
+      "roles": {
+        "Category": true
+      },
+      "type": {
+        "category": null,
+        "underlyingType": 1
+      },
+      "expr": {
+        "Column": {
+          "Expression": {
+            "SourceRef": {
+              "Entity": "CreditCard"
+            }
+          },
+          "Property": "Category"
+        }
+      }
+    },
+    {
+      "displayName": "Exit Customers",
+      "format": "0",
+      "queryName": "Calculations.Exit Customers",
+      "roles": {
+        "Y": true
+      },
+      "type": {
+        "category": null,
+        "underlyingType": 260
+      },
+      "expr": {
+        "Measure": {
+          "Expression": {
+            "SourceRef": {
+              "Entity": "Calculations"
+            }
+          },
+          "Property": "Exit Customers"
+        }
+      }
+    }
+  ]
+}

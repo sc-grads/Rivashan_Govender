@@ -1,0 +1,99 @@
+{
+  "objects": {
+    "labels": [
+      {
+        "properties": {
+          "fontSize": {
+            "expr": {
+              "Literal": {
+                "Value": "28D"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "categoryLabels": [
+      {
+        "properties": {
+          "bold": {
+            "expr": {
+              "Literal": {
+                "Value": "true"
+              }
+            }
+          },
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 1,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          },
+          "fontSize": {
+            "expr": {
+              "Literal": {
+                "Value": "11D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "projectionOrdering": {
+    "Values": [
+      0
+    ]
+  },
+  "queryMetadata": {
+    "Select": [
+      {
+        "Restatement": "Inactive Customers",
+        "Name": "Calculations.Inactive Customers",
+        "Type": 3,
+        "Format": "0"
+      }
+    ]
+  },
+  "visualElements": [
+    {
+      "DataRoles": [
+        {
+          "Name": "Values",
+          "Projection": 0,
+          "isActive": false
+        }
+      ]
+    }
+  ],
+  "selects": [
+    {
+      "displayName": "Inactive Customers",
+      "format": "0",
+      "queryName": "Calculations.Inactive Customers",
+      "roles": {
+        "Values": true
+      },
+      "type": {
+        "category": null,
+        "underlyingType": 260
+      },
+      "expr": {
+        "Measure": {
+          "Expression": {
+            "SourceRef": {
+              "Entity": "Calculations"
+            }
+          },
+          "Property": "Inactive Customers"
+        }
+      }
+    }
+  ]
+}

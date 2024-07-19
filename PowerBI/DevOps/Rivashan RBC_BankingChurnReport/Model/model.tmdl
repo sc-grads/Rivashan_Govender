@@ -1,0 +1,30 @@
+﻿model Model
+	culture: en-ZA
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-ZA
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBIDesktopVersion = 2.131.901.0 (24.07)
+
+annotation PBI_QueryOrder = ["ActiveCustomers","CreditCard","ExitCustomer","Gender","Geography","Bank_Churn","CustomerInfo","Calculations"]
+
+ref table ActiveCustomers
+ref table CreditCard
+ref table ExitCustomer
+ref table Gender
+ref table Geography
+ref table Bank_Churn
+ref table CustomerInfo
+ref table DateMaster
+ref table Calculations
+
+ref role FranceRegion
+ref role GermanyRegion
+ref role SpainRegion
+
+ref cultureInfo en-ZA
+

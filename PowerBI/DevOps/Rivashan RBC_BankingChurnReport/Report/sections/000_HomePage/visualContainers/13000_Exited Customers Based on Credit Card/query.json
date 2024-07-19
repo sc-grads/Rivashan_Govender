@@ -1,0 +1,69 @@
+{
+  "Commands": [
+    {
+      "SemanticQueryDataShapeCommand": {
+        "Query": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "c",
+              "Entity": "CreditCard",
+              "Type": 0
+            },
+            {
+              "Name": "c1",
+              "Entity": "Calculations",
+              "Type": 0
+            }
+          ],
+          "Select": [
+            {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "c"
+                  }
+                },
+                "Property": "Category"
+              },
+              "Name": "CreditCard.Category",
+              "NativeReferenceName": "Category"
+            },
+            {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "c1"
+                  }
+                },
+                "Property": "Exit Customers"
+              },
+              "Name": "Calculations.Exit Customers",
+              "NativeReferenceName": "Exit Customers"
+            }
+          ]
+        },
+        "Binding": {
+          "Primary": {
+            "Groupings": [
+              {
+                "Projections": [
+                  0,
+                  1
+                ]
+              }
+            ]
+          },
+          "DataReduction": {
+            "DataVolume": 3,
+            "Primary": {
+              "Top": {}
+            }
+          },
+          "Version": 1
+        },
+        "ExecutionMetricsKind": 1
+      }
+    }
+  ]
+}

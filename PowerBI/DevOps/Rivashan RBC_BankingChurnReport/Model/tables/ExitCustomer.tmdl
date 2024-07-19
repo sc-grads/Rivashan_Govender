@@ -1,0 +1,29 @@
+﻿table ExitCustomer
+
+	column ExitID
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: ExitID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ExitCategory
+		dataType: string
+		summarizeBy: none
+		sourceColumn: ExitCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ExitCustomer = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Rivashan Govender\Downloads\YouTube -Banking Report\ExitCustomer.xlsx"), null, true),
+				    Table1_Table = Source{[Item="Table1",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Table1_Table,{{"ExitID", Int64.Type}, {"ExitCategory", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

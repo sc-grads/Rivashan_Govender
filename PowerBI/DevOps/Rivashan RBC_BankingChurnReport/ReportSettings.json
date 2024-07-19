@@ -1,0 +1,9 @@
+{
+  "Version": 4,
+  "ReportSettings": {},
+  "QueriesSettings": {
+    "TypeDetectionEnabled": true,
+    "RelationshipImportEnabled": true,
+    "Version": "2.130.528.0"
+  }
+}

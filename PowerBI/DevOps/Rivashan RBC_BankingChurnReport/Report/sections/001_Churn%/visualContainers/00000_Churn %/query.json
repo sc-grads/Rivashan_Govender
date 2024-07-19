@@ -1,0 +1,127 @@
+{
+  "Commands": [
+    {
+      "SemanticQueryDataShapeCommand": {
+        "Query": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "DateMaster",
+              "Type": 0
+            },
+            {
+              "Name": "c",
+              "Entity": "Calculations",
+              "Type": 0
+            }
+          ],
+          "Select": [
+            {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "d"
+                  }
+                },
+                "Property": "Year"
+              },
+              "Name": "DateMaster.Year",
+              "NativeReferenceName": "Year"
+            },
+            {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "d"
+                  }
+                },
+                "Property": "Month Name"
+              },
+              "Name": "DateMaster.Month Name",
+              "NativeReferenceName": "Month Name"
+            },
+            {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "c"
+                  }
+                },
+                "Property": "Churn%"
+              },
+              "Name": "Calculations.Churn%",
+              "NativeReferenceName": "Churn%"
+            }
+          ],
+          "OrderBy": [
+            {
+              "Direction": 2,
+              "Expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Source": "d"
+                    }
+                  },
+                  "Property": "Year"
+                }
+              }
+            }
+          ]
+        },
+        "Binding": {
+          "Primary": {
+            "Groupings": [
+              {
+                "Projections": [
+                  0
+                ],
+                "Subtotal": 1
+              }
+            ]
+          },
+          "Secondary": {
+            "Groupings": [
+              {
+                "Projections": [
+                  1,
+                  2
+                ],
+                "Subtotal": 2
+              }
+            ]
+          },
+          "DataReduction": {
+            "DataVolume": 3,
+            "Primary": {
+              "Window": {
+                "Count": 100
+              }
+            },
+            "Secondary": {
+              "Top": {
+                "Count": 100
+              }
+            }
+          },
+          "Aggregates": [
+            {
+              "Select": 2,
+              "Aggregations": [
+                {
+                  "Min": {}
+                },
+                {
+                  "Max": {}
+                }
+              ]
+            }
+          ],
+          "Version": 1
+        },
+        "ExecutionMetricsKind": 1
+      }
+    }
+  ]
+}

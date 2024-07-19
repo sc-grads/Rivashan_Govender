@@ -1,0 +1,368 @@
+{
+  "objects": {
+    "dataPoint": [
+      {
+        "properties": {
+          "fill": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#FFBD61'"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "selector": {
+          "data": [
+            {
+              "scopeId": {
+                "Comparison": {
+                  "ComparisonKind": 0,
+                  "Left": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "ActiveCustomer"
+                        }
+                      },
+                      "Property": "ActiveCategory"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "'Active Member'"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "properties": {
+          "fill": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 2,
+                    "Percent": -0.5
+                  }
+                }
+              }
+            }
+          }
+        },
+        "selector": {
+          "data": [
+            {
+              "scopeId": {
+                "Comparison": {
+                  "ComparisonKind": 0,
+                  "Left": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "ActiveCustomer"
+                        }
+                      },
+                      "Property": "ActiveCategory"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "'Inactive Member'"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "properties": {
+          "fill": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 2,
+                    "Percent": -0.25
+                  }
+                }
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "Calculations.Active Customers"
+        }
+      },
+      {
+        "properties": {
+          "fill": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#FFBD61'"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "Calculations.Inactive Customers"
+        }
+      }
+    ],
+    "categoryAxis": [
+      {
+        "properties": {
+          "titleColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 1,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          },
+          "labelColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          },
+          "showAxisTitle": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "labels": [
+      {
+        "properties": {
+          "show": {
+            "expr": {
+              "Literal": {
+                "Value": "true"
+              }
+            }
+          },
+          "labelPosition": {
+            "expr": {
+              "Literal": {
+                "Value": "'InsideEnd'"
+              }
+            }
+          },
+          "labelOverflow": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "legend": [
+      {
+        "properties": {
+          "labelColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          },
+          "showTitle": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "valueAxis": [
+      {
+        "properties": {
+          "labelColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          },
+          "showAxisTitle": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "projectionOrdering": {
+    "Category": [
+      0
+    ],
+    "Y": [
+      1,
+      2
+    ]
+  },
+  "projectionActiveItems": {
+    "Category": [
+      {
+        "queryRef": "DateMaster.Year",
+        "suppressConcat": false
+      }
+    ]
+  },
+  "queryMetadata": {
+    "Select": [
+      {
+        "Restatement": "Year",
+        "Name": "DateMaster.Year",
+        "Type": 3,
+        "Format": "0"
+      },
+      {
+        "Restatement": "Active Customers",
+        "Name": "Calculations.Active Customers",
+        "Type": 3,
+        "Format": "0"
+      },
+      {
+        "Restatement": "Inactive Customers",
+        "Name": "Calculations.Inactive Customers",
+        "Type": 3,
+        "Format": "0"
+      }
+    ]
+  },
+  "visualElements": [
+    {
+      "DataRoles": [
+        {
+          "Name": "Category",
+          "Projection": 0,
+          "isActive": true
+        },
+        {
+          "Name": "Y",
+          "Projection": 1,
+          "isActive": false
+        },
+        {
+          "Name": "Y",
+          "Projection": 2,
+          "isActive": false
+        }
+      ]
+    }
+  ],
+  "selects": [
+    {
+      "displayName": "Year",
+      "format": "0",
+      "queryName": "DateMaster.Year",
+      "roles": {
+        "Category": true
+      },
+      "type": {
+        "category": null,
+        "underlyingType": 260
+      },
+      "expr": {
+        "Column": {
+          "Expression": {
+            "SourceRef": {
+              "Entity": "DateMaster"
+            }
+          },
+          "Property": "Year"
+        }
+      }
+    },
+    {
+      "displayName": "Active Customers",
+      "format": "0",
+      "queryName": "Calculations.Active Customers",
+      "roles": {
+        "Y": true
+      },
+      "type": {
+        "category": null,
+        "underlyingType": 260
+      },
+      "expr": {
+        "Measure": {
+          "Expression": {
+            "SourceRef": {
+              "Entity": "Calculations"
+            }
+          },
+          "Property": "Active Customers"
+        }
+      }
+    },
+    {
+      "displayName": "Inactive Customers",
+      "format": "0",
+      "queryName": "Calculations.Inactive Customers",
+      "roles": {
+        "Y": true
+      },
+      "type": {
+        "category": null,
+        "underlyingType": 260
+      },
+      "expr": {
+        "Measure": {
+          "Expression": {
+            "SourceRef": {
+              "Entity": "Calculations"
+            }
+          },
+          "Property": "Inactive Customers"
+        }
+      }
+    }
+  ]
+}

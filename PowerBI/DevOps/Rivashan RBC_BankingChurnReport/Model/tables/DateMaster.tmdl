@@ -1,0 +1,41 @@
+﻿table DateMaster
+
+	column Date
+		dataType: dateTime
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year = YEAR(DateMaster[Date])
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month = MONTH(DateMaster[Date])
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name' = FORMAT(DateMaster[Date], "MMM")
+		dataType: string
+		summarizeBy: none
+		isDataTypeInferred
+		sortByColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DateMaster = calculated
+		mode: import
+		source = CALENDAR(FIRSTDATE(Bank_Churn[Bank DOJ]),LASTDATE(Bank_Churn[Bank DOJ]))
+
+	annotation PBI_Id = b13d64ad1f784839aaf7f4e88e498010
+

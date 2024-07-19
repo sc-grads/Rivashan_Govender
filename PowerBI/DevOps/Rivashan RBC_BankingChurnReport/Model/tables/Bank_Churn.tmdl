@@ -1,0 +1,140 @@
+﻿table Bank_Churn
+
+	column RowNumber
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: RowNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerId
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: CustomerId
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreditScore
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: CreditScore
+
+		annotation SummarizationSetBy = Automatic
+
+	column GeographyID
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: GeographyID
+
+		annotation SummarizationSetBy = Automatic
+
+	column GenderID
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: GenderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tenure
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: Tenure
+
+		annotation SummarizationSetBy = Automatic
+
+	column Balance
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Balance
+
+		annotation SummarizationSetBy = Automatic
+
+	column NumOfProducts
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: NumOfProducts
+
+		annotation SummarizationSetBy = Automatic
+
+	column HasCrCard
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: HasCrCard
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsActiveMember
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: IsActiveMember
+
+		annotation SummarizationSetBy = Automatic
+
+	column EstimatedSalary
+		dataType: string
+		summarizeBy: none
+		sourceColumn: EstimatedSalary
+
+		annotation SummarizationSetBy = Automatic
+
+	column Exited
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: Exited
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bank DOJ'
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: Bank DOJ
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Credit type' =
+			SWITCH(true(),Bank_Churn[CreditScore]>=800 && Bank_Churn[CreditScore]<=850,"Excellent",
+			Bank_Churn[CreditScore]>=740&&Bank_Churn[CreditScore]<=799,"very good",
+			Bank_Churn[CreditScore]>=670&&Bank_Churn[CreditScore]<=739,"good",
+			Bank_Churn[CreditScore]>=580&&Bank_Churn[CreditScore]<=669,"Fair",
+			Bank_Churn[CreditScore]>=300&&Bank_Churn[CreditScore]<=579,"poor")
+		dataType: string
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Bank_Churn = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Rivashan Govender\Downloads\YouTube -Banking Report\Bank_Churn.csv"),[Delimiter=",", Columns=14, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"RowNumber", Int64.Type}, {"CustomerId", Int64.Type}, {"CreditScore", Int64.Type}, {"GeographyID", Int64.Type}, {"GenderID", Int64.Type}, {"Age", Int64.Type}, {"Tenure", Int64.Type}, {"Balance", type text}, {"NumOfProducts", Int64.Type}, {"HasCrCard", Int64.Type}, {"IsActiveMember", Int64.Type}, {"EstimatedSalary", type text}, {"Exited", Int64.Type}, {"Bank DOJ", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

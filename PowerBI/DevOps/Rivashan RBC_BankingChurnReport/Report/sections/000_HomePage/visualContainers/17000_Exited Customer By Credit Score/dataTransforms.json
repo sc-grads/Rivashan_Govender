@@ -1,0 +1,290 @@
+{
+  "objects": {
+    "labels": [
+      {
+        "properties": {}
+      },
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        "selector": {
+          "data": [
+            {
+              "dataViewWildcard": {
+                "matchingOption": 1
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "dataPoint": [
+      {
+        "properties": {
+          "fill": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#0E5595'"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "selector": {
+          "data": [
+            {
+              "scopeId": {
+                "Comparison": {
+                  "ComparisonKind": 0,
+                  "Left": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "CreditCard"
+                        }
+                      },
+                      "Property": "Category"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "'non credit card holder'"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "properties": {
+          "fill": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#FFBD61'"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "selector": {
+          "data": [
+            {
+              "scopeId": {
+                "Comparison": {
+                  "ComparisonKind": 0,
+                  "Left": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "CreditCard"
+                        }
+                      },
+                      "Property": "Category"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "'credit card holder'"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "properties": {
+          "fill": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#FFBD61'"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "selector": {
+          "data": [
+            {
+              "scopeId": {
+                "Comparison": {
+                  "ComparisonKind": 0,
+                  "Left": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Gender"
+                        }
+                      },
+                      "Property": "GenderCategory"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "'Male'"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "legend": [
+      {
+        "properties": {
+          "position": {
+            "expr": {
+              "Literal": {
+                "Value": "'BottomCenter'"
+              }
+            }
+          },
+          "fontFamily": {
+            "expr": {
+              "Literal": {
+                "Value": "'Tahoma'"
+              }
+            }
+          },
+          "fontSize": {
+            "expr": {
+              "Literal": {
+                "Value": "9D"
+              }
+            }
+          },
+          "labelColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "projectionOrdering": {
+    "Y": [
+      0
+    ],
+    "Category": [
+      1
+    ]
+  },
+  "projectionActiveItems": {
+    "Category": [
+      {
+        "queryRef": "Gender.GenderCategory",
+        "suppressConcat": false
+      }
+    ]
+  },
+  "queryMetadata": {
+    "Select": [
+      {
+        "Restatement": "Exit Customers",
+        "Name": "Calculations.Exit Customers",
+        "Type": 3,
+        "Format": "0"
+      },
+      {
+        "Restatement": "GenderCategory",
+        "Name": "Gender.GenderCategory",
+        "Type": 2048
+      }
+    ]
+  },
+  "visualElements": [
+    {
+      "DataRoles": [
+        {
+          "Name": "Y",
+          "Projection": 0,
+          "isActive": false
+        },
+        {
+          "Name": "Category",
+          "Projection": 1,
+          "isActive": true
+        }
+      ]
+    }
+  ],
+  "selects": [
+    {
+      "displayName": "Exit Customers",
+      "format": "0",
+      "queryName": "Calculations.Exit Customers",
+      "roles": {
+        "Y": true
+      },
+      "type": {
+        "category": null,
+        "underlyingType": 260
+      },
+      "expr": {
+        "Measure": {
+          "Expression": {
+            "SourceRef": {
+              "Entity": "Calculations"
+            }
+          },
+          "Property": "Exit Customers"
+        }
+      }
+    },
+    {
+      "displayName": "GenderCategory",
+      "queryName": "Gender.GenderCategory",
+      "roles": {
+        "Category": true
+      },
+      "type": {
+        "category": null,
+        "underlyingType": 1
+      },
+      "expr": {
+        "Column": {
+          "Expression": {
+            "SourceRef": {
+              "Entity": "Gender"
+            }
+          },
+          "Property": "GenderCategory"
+        }
+      }
+    }
+  ]
+}
