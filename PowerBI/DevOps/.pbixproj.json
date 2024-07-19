@@ -21,7 +21,7 @@
       },
       "environments": {
         "PROD": {
-          "workspace": "Report DevOps - Rivashan"
+          "workspace": "ReportDevOps-Rivashan"
         }
       }
     }
