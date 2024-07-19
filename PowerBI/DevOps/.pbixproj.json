@@ -2,11 +2,11 @@
   "version": "0.11",
   "created": "2024-07-18T18:09:54.2556434+00:00",
   "deployments": {
-    "files": {
+    "Files": {
       "mode": "Report",
       "source": {
-        "type": "file",
-        "path": "/DevOps/*.pbix$"
+        "type": "File",
+        "path": "Rivashan RBC_BankingChurnReport.pbix"
       },
       "authentication": {
         "type": "ServicePrincipal",
@@ -21,7 +21,7 @@
       },
       "environments": {
         "PROD": {
-          "workspace": "Report DevOps - Rivashan"
+          "workspace":"ReportDevOps-Rivashan"
         }
       }
     }
