@@ -21,7 +21,11 @@
       },
       "environments": {
         "PROD": {
+<<<<<<< HEAD
           "workspace":"ReportDevOps-Rivashan"
+=======
+          "workspace": "ReportDevOps-Rivashan"
+>>>>>>> d1114451e603df555fb6934e6ec4b10a3c594de7
         }
       }
     }
