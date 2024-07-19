@@ -19,12 +19,12 @@ jobs:
           lfs: 'true'
 
       - name: List files in C:\PowerBI\DevOps
-        run: dir C:\PowerBI\DevOps
+        run: dir PowerBI/DevOps
         shell: cmd
 
       - name: pbi-tools deploy
         run: |
-          C:\PowerBI\DevOps\pbi-tools.core deploy . files PROD
+          pbi-tools.core deploy . files PROD
         env:
           PBI_CLIENT_SECRET: ${{ secrets.PBI_CLIENT_SECRET }}
         shell: cmd
