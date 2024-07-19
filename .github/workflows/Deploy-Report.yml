@@ -1,6 +1,5 @@
 name: Deployment
 
-# Controls when the workflow will run
 on:
   push:
     branches: [ main ]
@@ -11,19 +10,21 @@ env:
 
 jobs:
   Deployment:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     environment: PROD
-    container:
-      image: ghcr.io/pbi-tools/pbi-tools-core:latest
 
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
         with:
           lfs: 'true'
 
+      - name: List files in C:\PowerBI\DevOps
+        run: dir C:\PowerBI\DevOps
+        shell: cmd
+
       - name: pbi-tools deploy
         run: |
-          /PowerBI/DevOps/pbi-tools.core deploy . files PROD 
+          C:\PowerBI\DevOps\pbi-tools.core deploy . files PROD
         env:
           PBI_CLIENT_SECRET: ${{ secrets.PBI_CLIENT_SECRET }}
+        shell: cmd
