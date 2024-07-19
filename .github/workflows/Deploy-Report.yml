@@ -26,6 +26,6 @@ jobs:
         run: cd PowerBI/DevOps
 
       - name: pbi-tools deploy
-        run: /app/pbi-tools/pbi-tools deploy . "$PROFILE" "$ENVIRONMENT"
+        run: /app/pbi-tools/pbi-tools.core deploy . files PROD
         env:
           PBI_CLIENT_SECRET: ${{ secrets.PBI_CLIENT_SECRET }}
