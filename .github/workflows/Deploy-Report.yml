@@ -22,4 +22,5 @@ jobs:
         run: cd PowerBI/DevOps
 
       - name: pbi-tools deploy
+        working-directory: ./DevOps
         run: /app/pbi-tools/pbi-tools.core deploy . Files PROD
