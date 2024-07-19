@@ -19,7 +19,7 @@ jobs:
           lfs: 'true'
 
       - name: List files in C:\PowerBI\DevOps
-        run: dir PowerBI/DevOps
+        run: dir C:/Program Files/Git/PowerBI/DevOps
         shell: cmd
 
       - name: pbi-tools deploy
