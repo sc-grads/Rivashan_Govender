@@ -23,7 +23,7 @@ jobs:
           lfs: 'true'
           
       - name: Change directory to PowerBI/DevOps
-        run: cd PowerBI/DevOps
+        run: cd Rivashan_Govende/PowerBI/DevOps
 
       - name: pbi-tools deploy
         run: /app/pbi-tools/pbi-tools.core deploy . Files PROD
