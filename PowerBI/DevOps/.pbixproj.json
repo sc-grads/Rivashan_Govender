@@ -6,7 +6,7 @@
       "mode": "Report",
       "source": {
         "type": "file",
-        "path": "/DevOps/*.pbix$"
+        "path": "./DevOps/*.pbix$"
       },
       "authentication": {
         "type": "ServicePrincipal",
