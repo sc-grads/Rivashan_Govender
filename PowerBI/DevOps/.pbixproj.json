@@ -2,10 +2,10 @@
   "version": "0.11",
   "created": "2024-07-18T18:09:54.2556434+00:00",
   "deployments": {
-    "files": {
+    "Files": {
       "mode": "Report",
       "source": {
-        "type": "file",
+        "type": "File",
         "path": "./DevOps/*.pbix$"
       },
       "authentication": {
