@@ -6,7 +6,7 @@
       "mode": "Report",
       "source": {
         "type": "File",
-        "path": "/DevOps/*.pbix$"
+        "path": "Rivashan RBC_BankingChurnReport.pbix"
       },
       "authentication": {
         "type": "ServicePrincipal",
