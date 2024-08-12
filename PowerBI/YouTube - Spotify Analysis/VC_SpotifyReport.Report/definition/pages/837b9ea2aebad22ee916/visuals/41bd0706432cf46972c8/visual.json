@@ -1,0 +1,182 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "41bd0706432cf46972c8",
+  "position": {
+    "x": 939.2,
+    "y": 182.4,
+    "z": 11000,
+    "width": 292.8,
+    "height": 289.6,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "deneb7E15AEF80B9E4D4F8E12924291ECE89A",
+    "query": {
+      "queryState": {
+        "dataset": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "updated_file"
+                    }
+                  },
+                  "Property": "Percentage Value"
+                }
+              },
+              "queryRef": "updated_file.Percentage Value",
+              "nativeQueryRef": "Percentage Value"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "updated_file"
+                  }
+                },
+                "Property": "Percentage Value"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "display": [
+        {
+          "properties": {
+            "viewportHeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "279.6D"
+                }
+              }
+            },
+            "viewportWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "282.8D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "vega": [
+        {
+          "properties": {
+            "provider": {
+              "expr": {
+                "Literal": {
+                  "Value": "'vega'"
+                }
+              }
+            },
+            "jsonSpec": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\r\n  \"$schema\": \"https://vega.github.io/schema/vega/v5.json\",\r\n  \"width\": 250,\r\n  \"height\": 250,\r\n  \"padding\": 20,\r\n  \"signals\": [\r\n    {\r\n      \"name\": \"textGradient\",\r\n      \"update\": \"{gradient: ''linear'', stops: [{offset: 0, color: ''#1db954''}, {offset: 1, color: ''#1db954''}]}\"\r\n    },\r\n    {\r\n      \"name\": \"percent\",\r\n      \"update\": \"0\",\r\n      \"on\": [\r\n        {\r\n          \"events\": {\r\n            \"type\": \"timer\",\r\n            \"throttle\": 0\r\n          },\r\n          \"update\": \"round(data(''dataset'')[0][''Percentage Value''])\"\r\n        }\r\n      ]\r\n    }\r\n  ],\r\n  \"data\": [\r\n    {\"name\": \"dataset\"},\r\n    {\r\n      \"name\": \"back\",\r\n      \"values\": [],\r\n      \"transform\": [\r\n        {\r\n          \"type\": \"sequence\",\r\n          \"start\": 0,\r\n          \"stop\": 100,\r\n          \"step\": 1,\r\n          \"as\": \"val\"\r\n        },\r\n        {\r\n          \"type\": \"formula\",\r\n          \"expr\": \"1\",\r\n          \"as\": \"t\"\r\n        },\r\n        {\r\n          \"type\": \"pie\",\r\n          \"field\": \"t\",\r\n          \"startAngle\": {\"signal\": \"0\"},\r\n          \"endAngle\": {\"signal\": \"2*PI\"}\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"front\",\r\n      \"values\": [],\r\n      \"transform\": [\r\n        {\r\n          \"type\": \"sequence\",\r\n          \"start\": 0,\r\n          \"stop\": {\"signal\": \"percent\"},\r\n          \"step\": 1,\r\n          \"as\": \"val\"\r\n        },\r\n        {\r\n          \"type\": \"formula\",\r\n          \"expr\": \"1\",\r\n          \"as\": \"t\"\r\n        },\r\n        {\r\n          \"type\": \"pie\",\r\n          \"field\": \"t\",\r\n          \"startAngle\": {\"signal\": \"0\"},\r\n          \"endAngle\": {\r\n            \"signal\": \"((2*PI)/100)*percent\"\r\n          }\r\n        }\r\n      ]\r\n    }\r\n  ],\r\n  \"scales\": [\r\n    {\r\n      \"name\": \"color\",\r\n      \"type\": \"linear\",\r\n      \"domain\": {\r\n        \"data\": \"back\",\r\n        \"field\": \"val\"\r\n      },\r\n      \"range\": [\r\n        \"#036d19\",\r\n        \"#1db954\"\r\n      ]\r\n    }\r\n  ],\r\n  \"marks\": [\r\n    {\r\n      \"type\": \"arc\",\r\n      \"from\": {\"data\": \"back\"},\r\n      \"encode\": {\r\n        \"enter\": {\r\n          \"fill\": {\"value\": \"#3f424e\"},\r\n          \"x\": {\"signal\": \"width / 2\"},\r\n          \"y\": {\"signal\": \"height / 2\"}\r\n        },\r\n        \"update\": {\r\n          \"startAngle\": {\r\n            \"field\": \"startAngle\"\r\n          },\r\n          \"endAngle\": {\r\n            \"field\": \"endAngle\"\r\n          },\r\n          \"padAngle\": {\r\n            \"signal\": \"0.015\"\r\n          },\r\n          \"innerRadius\": {\r\n            \"signal\": \"(width / 2)-15\"\r\n          },\r\n          \"outerRadius\": {\r\n            \"signal\": \"width / 2\"\r\n          }\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"type\": \"arc\",\r\n      \"from\": {\"data\": \"front\"},\r\n      \"encode\": {\r\n        \"enter\": {\r\n          \"fill\": {\r\n            \"scale\": \"color\",\r\n            \"field\": \"val\"\r\n          },\r\n          \"x\": {\"signal\": \"width / 2\"},\r\n          \"y\": {\"signal\": \"height / 2\"}\r\n        },\r\n        \"update\": {\r\n          \"startAngle\": {\r\n            \"field\": \"startAngle\"\r\n          },\r\n          \"endAngle\": {\r\n            \"field\": \"endAngle\"\r\n          },\r\n          \"padAngle\": {\r\n            \"signal\": \"0.015\"\r\n          },\r\n          \"innerRadius\": {\r\n            \"signal\": \"(width / 2)-15\"\r\n          },\r\n          \"outerRadius\": {\r\n            \"signal\": \"width / 2\"\r\n          }\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"type\": \"arc\",\r\n      \"data\": [{\"a\": 1}],\r\n      \"encode\": {\r\n        \"enter\": {\r\n          \"fill\": {\"value\": \"#3f424e\"},\r\n          \"x\": {\"signal\": \"width / 2\"},\r\n          \"y\": {\"signal\": \"height / 2\"}\r\n        },\r\n        \"update\": {\r\n          \"startAngle\": {\"signal\": \"0\"},\r\n          \"endAngle\": {\r\n            \"signal\": \"2*PI\"\r\n          },\r\n          \"innerRadius\": {\r\n            \"signal\": \"(width / 2)-25\"\r\n          },\r\n          \"outerRadius\": {\r\n            \"signal\": \"(width / 2)-20\"\r\n          }\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"type\": \"text\",\r\n      \"data\": [{}],\r\n      \"encode\": {\r\n        \"update\": {\r\n          \"text\": {\r\n            \"signal\": \"percent + ''%''\"\r\n          },\r\n          \"align\": {\"value\": \"center\"},\r\n          \"fontWeight\": {\r\n            \"value\": \"bold\"\r\n          },\r\n          \"fill\": {\r\n            \"signal\": \"textGradient\"\r\n          },\r\n          \"x\": {\"signal\": \"width /2\"},\r\n          \"y\": {\"signal\": \"width /2\"},\r\n          \"dy\": {\"value\": 10},\r\n          \"fontSize\": {\"value\": 70}\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"type\": \"text\",\r\n      \"data\": [{}],\r\n      \"encode\": {\r\n        \"update\": {\r\n          \"text\": {\r\n            \"value\": \"on target\"\r\n          },\r\n          \"align\": {\"value\": \"center\"},\r\n          \"fontWeight\": {\r\n            \"value\": \"bold\"\r\n          },\r\n          \"fill\": {\"value\": \"#000d19\"},\r\n          \"x\": {\"signal\": \"width /2\"},\r\n          \"y\": {\"signal\": \"width /2\"},\r\n          \"dy\": {\"value\": 40},\r\n          \"fontSize\": {\"value\": 30}\r\n        }\r\n      }\r\n    }\r\n  ]\r\n}'"
+                }
+              }
+            },
+            "jsonConfig": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{}'"
+                }
+              }
+            },
+            "isNewDialogOpen": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "enableTooltips": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableContextMenu": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableHighlight": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "enableSelection": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "selectionMaxDataPoints": {
+              "expr": {
+                "Literal": {
+                  "Value": "50D"
+                }
+              }
+            },
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'5.26.1'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "developer": [
+        {
+          "properties": {
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'1.6.2.1'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

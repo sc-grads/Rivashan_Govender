@@ -1,0 +1,217 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "4d243ea3e923f0663baa",
+  "position": {
+    "x": 537.6,
+    "y": 214.4,
+    "z": 12000,
+    "width": 348.8,
+    "height": 225.6,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "deneb7E15AEF80B9E4D4F8E12924291ECE89A",
+    "query": {
+      "queryState": {
+        "dataset": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "updated_file"
+                    }
+                  },
+                  "Property": "Day of Week"
+                }
+              },
+              "queryRef": "updated_file.Day of Week",
+              "nativeQueryRef": "Day of Week"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "updated_file"
+                    }
+                  },
+                  "Property": "Track"
+                }
+              },
+              "queryRef": "updated_file.Track",
+              "nativeQueryRef": "Track"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "updated_file"
+                    }
+                  },
+                  "Property": "Month"
+                }
+              },
+              "queryRef": "updated_file.Month",
+              "nativeQueryRef": "Month"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "updated_file"
+                  }
+                },
+                "Property": "Day of Week"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "display": [
+        {
+          "properties": {
+            "viewportHeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "215.6D"
+                }
+              }
+            },
+            "viewportWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "338.8D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "vega": [
+        {
+          "properties": {
+            "provider": {
+              "expr": {
+                "Literal": {
+                  "Value": "'vega'"
+                }
+              }
+            },
+            "jsonSpec": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\r\n  \"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\",\r\n  \"data\": {\"name\": \"dataset\"},\r\n  \"config\": {\r\n    \"autosize\": {\r\n      \"type\": \"fit\",\r\n      \"contains\": \"padding\"\r\n    },\r\n    \"view\": {\"stroke\": \"transparent\"}\r\n  },\r\n  \"vconcat\": [\r\n    {\r\n      \"height\": 60,\r\n      \"mark\": {\r\n        \"type\": \"bar\",\r\n        \"cornerRadiusEnd\": 4\r\n      },\r\n      \"encoding\": {\r\n        \"x\": {\r\n          \"field\": \"Month\",\r\n          \"type\": \"ordinal\",\r\n          \"sort\": [\r\n            \"Jan\", \"Feb\", \"Mar\", \"Apr\", \"May\", \"Jun\",\r\n            \"Jul\", \"Aug\", \"Sep\", \"Oct\", \"Nov\", \"Dec\"\r\n          ]\r\n        },\r\n        \"y\": {\r\n          \"field\": \"Value\",\r\n          \"type\": \"quantitative\",\r\n          \"aggregate\": \"mean\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"hconcat\": [\r\n        {\r\n          \"mark\": {\r\n            \"type\": \"rect\",\r\n            \"tooltip\": true,\r\n            \"cornerRadius\": 6\r\n          },\r\n          \"encoding\": {\r\n            \"y\": {\r\n              \"field\": \"Day\",\r\n              \"type\": \"ordinal\",\r\n              \"sort\": [\"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", \"Sat\", \"Sun\"]\r\n            },\r\n            \"x\": {\r\n              \"field\": \"Month\",\r\n              \"type\": \"ordinal\",\r\n              \"sort\": [\r\n                \"Jan\", \"Feb\", \"Mar\", \"Apr\", \"May\", \"Jun\",\r\n                \"Jul\", \"Aug\", \"Sep\", \"Oct\", \"Nov\", \"Dec\"\r\n              ]\r\n            },\r\n            \"color\": {\r\n              \"field\": \"Value\",\r\n              \"type\": \"quantitative\",\r\n              \"aggregate\": \"mean\",\r\n              \"scale\": {\r\n                \"scheme\": \"blues\"\r\n              }\r\n            }\r\n          }\r\n        },\r\n        {\r\n          \"mark\": {\r\n            \"type\": \"bar\",\r\n            \"cornerRadiusEnd\": 4\r\n          },\r\n          \"width\": 60,\r\n          \"encoding\": {\r\n            \"y\": {\r\n              \"field\": \"Day\",\r\n              \"type\": \"ordinal\",\r\n              \"sort\": [\"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", \"Sat\", \"Sun\"]\r\n            },\r\n            \"x\": {\r\n              \"field\": \"Value\",\r\n              \"type\": \"quantitative\",\r\n              \"aggregate\": \"mean\"\r\n            }\r\n          }\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}'"
+                }
+              }
+            },
+            "jsonConfig": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{}'"
+                }
+              }
+            },
+            "isNewDialogOpen": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "enableTooltips": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableContextMenu": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableHighlight": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "enableSelection": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "selectionMaxDataPoints": {
+              "expr": {
+                "Literal": {
+                  "Value": "50D"
+                }
+              }
+            },
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'5.26.1'"
+                }
+              }
+            },
+            "renderMode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'svg'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "developer": [
+        {
+          "properties": {
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'1.6.2.1'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

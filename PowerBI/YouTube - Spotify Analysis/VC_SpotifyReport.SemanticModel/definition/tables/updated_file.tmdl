@@ -1,0 +1,384 @@
+table updated_file
+	lineageTag: 5748ea0e-a0a5-4810-8153-bec66634f593
+
+	measure 'Max streams' = MAX('updated_file'[streams])
+		formatString: 0
+		lineageTag: 4c4d6efd-177d-40df-a1bd-2bb69e1e543c
+
+	measure 'Top Song Streams' =
+			
+			CALCULATE(
+			    SUM('updated_file'[streams]),
+			    'updated_file'[streams] = MAX('updated_file'[streams])
+			
+			)
+		formatString: 0
+		lineageTag: fcdc507e-3805-43e8-ba87-f85c09ac0a80
+
+	measure 'Average Streams Per Year' =
+			
+			CALCULATE(
+			    AVERAGE('updated_file'[streams]),
+			    ALLEXCEPT ('updated_file',updated_file[Date])
+			)
+		lineageTag: 78a85768-7dfb-47ce-90af-72fa323c993e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Top song vs avg value' =
+			
+			DIVIDE(
+			    [Top Song Streams] - [Average Streams Per Year],
+			    [Average Streams Per Year]
+			)
+		lineageTag: b3590635-c6bd-432f-b743-2fe1c9a1f5b1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Top song vs AVG' =
+			
+			VAR X = [Top song vs avg value] RETURN
+			IF(x > 0,
+			FORMAT(x,"#.0%") & " " & UNICHAR ( 9650),
+			FORMAT(x, "#.0%") & " " & UNICHAR ( 9660 ))
+		lineageTag: d5a156e8-5219-4044-aa4e-b901f05d45cd
+
+	measure '_Image html' =
+			
+			Var x =
+			CALCULATE(
+			MAX(updated_file[image_url]),
+			updated_file[streams] = MAX(updated_file[streams])
+			)
+			return
+			"
+			<!DOCTYPE html>
+			<html lang='en'>
+			<head>
+			<meta charset='UTF-8'>
+			<title>Image Cropping</title>
+			<style>
+			.image-container <
+			width: -20px; /* Width of the container */
+			height: -60px; /* Height of the container */
+			overflow: hidden; /* Hide parts of the image that don't fit */
+			border-radius: 15px; /* Rounded corners */
+			position: relative; /* Relative positioning for the child element */
+			>
+			
+			.image <
+			object-fit: cover; /* Cover the entire container */
+			object-position: center; /* Center the image */
+			width: 100%; /* Full width */
+			height: 100%; /* Full height */
+			>
+			</style>
+			</head>
+			<body>
+			<div class='image-container'>
+			<img src='"&x&"' alt='Album Cover' class='image'>
+			</div>
+			</body>
+			</html>
+			"
+		lineageTag: df47e60e-d7bc-4584-ab15-a8b90d87dc22
+
+	measure Measure
+		lineageTag: 22cbc032-6172-4498-bf5a-af45039607ef
+
+		annotation 43dbc3e8-3a1c-4b6f-9923-b49ff7d6691c = True
+
+	measure 'Percentage Value' =
+			
+			AVERAGE([energy_%])
+		lineageTag: 9b653e95-ca2e-447b-8d49-aa6c349b6fa8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Track = ```
+			Count(updated_file[track_name]) 
+			```
+		formatString: 0
+		lineageTag: 24d0f44a-c130-4ade-aa9d-bc045dc8dd44
+
+	column track_name
+		dataType: string
+		lineageTag: 58f11fe5-096b-4ce9-b058-2325b9cfc575
+		summarizeBy: none
+		sourceColumn: track_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column artist(s)_name
+		dataType: string
+		lineageTag: e095569c-eee5-4440-8c8e-85795eb36061
+		summarizeBy: none
+		sourceColumn: artist(s)_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column artist_count
+		dataType: int64
+		formatString: 0
+		lineageTag: bc8d601b-bf78-4715-a7b7-41a174a58ff9
+		summarizeBy: sum
+		sourceColumn: artist_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column released_year
+		dataType: int64
+		formatString: 0
+		lineageTag: dd0bc16f-68f7-4766-abce-4857dde0e6ff
+		summarizeBy: sum
+		sourceColumn: released_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column released_month
+		dataType: int64
+		formatString: 0
+		lineageTag: 29cc3817-1ea1-4a34-91b6-19e0c587c765
+		summarizeBy: sum
+		sourceColumn: released_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column released_day
+		dataType: int64
+		formatString: 0
+		lineageTag: 31736b54-7162-47d9-ba89-8f4760365928
+		summarizeBy: sum
+		sourceColumn: released_day
+
+		annotation SummarizationSetBy = Automatic
+
+	column in_spotify_playlists
+		dataType: int64
+		formatString: 0
+		lineageTag: 3cde2d59-b285-483d-9d62-7e4fbb549383
+		summarizeBy: sum
+		sourceColumn: in_spotify_playlists
+
+		annotation SummarizationSetBy = Automatic
+
+	column in_spotify_charts
+		dataType: int64
+		formatString: 0
+		lineageTag: 630dba86-cbee-4363-a1e8-848482b5c1bb
+		summarizeBy: sum
+		sourceColumn: in_spotify_charts
+
+		annotation SummarizationSetBy = Automatic
+
+	column streams
+		dataType: int64
+		formatString: 0
+		lineageTag: 39a30d6d-6614-4a10-bc37-45981705d5e0
+		summarizeBy: sum
+		sourceColumn: streams
+
+		annotation SummarizationSetBy = Automatic
+
+	column in_apple_playlists
+		dataType: int64
+		formatString: 0
+		lineageTag: d83f361b-fca6-4485-a32a-656c79b03e32
+		summarizeBy: sum
+		sourceColumn: in_apple_playlists
+
+		annotation SummarizationSetBy = Automatic
+
+	column in_apple_charts
+		dataType: int64
+		formatString: 0
+		lineageTag: 017950fd-a135-4cb6-b967-9f66c989c971
+		summarizeBy: sum
+		sourceColumn: in_apple_charts
+
+		annotation SummarizationSetBy = Automatic
+
+	column in_deezer_playlists
+		dataType: double
+		lineageTag: 243aa57b-27fb-46cc-8360-83568b66e622
+		summarizeBy: sum
+		sourceColumn: in_deezer_playlists
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column in_deezer_charts
+		dataType: int64
+		formatString: 0
+		lineageTag: 12034ef5-f10d-43e8-a462-ca71d01a80ce
+		summarizeBy: sum
+		sourceColumn: in_deezer_charts
+
+		annotation SummarizationSetBy = Automatic
+
+	column in_shazam_charts
+		dataType: double
+		lineageTag: a7cfbc77-6784-450b-8784-413c1f877e87
+		summarizeBy: sum
+		sourceColumn: in_shazam_charts
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column bpm
+		dataType: int64
+		formatString: 0
+		lineageTag: db150989-68b0-433b-b390-637187567f48
+		summarizeBy: sum
+		sourceColumn: bpm
+
+		annotation SummarizationSetBy = Automatic
+
+	column key
+		dataType: string
+		lineageTag: 150b5f66-1818-4842-b8fd-0b810de51a55
+		summarizeBy: none
+		sourceColumn: key
+
+		annotation SummarizationSetBy = Automatic
+
+	column mode
+		dataType: string
+		lineageTag: 77a8bd92-57ee-411f-9f97-d0a3476bde6f
+		summarizeBy: none
+		sourceColumn: mode
+
+		annotation SummarizationSetBy = Automatic
+
+	column danceability_%
+		dataType: int64
+		lineageTag: 154bdb0d-fbf3-4379-ac29-5367354a0a5b
+		summarizeBy: sum
+		sourceColumn: danceability_%
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valence_%
+		dataType: int64
+		lineageTag: 2fae5317-073f-46ba-9832-8a58a5ea4c68
+		summarizeBy: sum
+		sourceColumn: valence_%
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column energy_%
+		dataType: int64
+		formatString: 0
+		lineageTag: 894d46b4-7e11-4644-b981-7d0fa4d83e6c
+		summarizeBy: sum
+		sourceColumn: energy_%
+
+		annotation SummarizationSetBy = Automatic
+
+	column acousticness_%
+		dataType: int64
+		lineageTag: 5353f044-6135-4f0e-a1c6-c0c17d0fbda8
+		summarizeBy: sum
+		sourceColumn: acousticness_%
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column instrumentalness_%
+		dataType: int64
+		formatString: 0
+		lineageTag: a7e93ed8-67c7-4e20-95df-92d658ebbcb3
+		summarizeBy: sum
+		sourceColumn: instrumentalness_%
+
+		annotation SummarizationSetBy = Automatic
+
+	column liveness_%
+		dataType: int64
+		lineageTag: 3bd1b576-2443-46ff-b189-ed870bef8742
+		summarizeBy: sum
+		sourceColumn: liveness_%
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column speechiness_%
+		dataType: int64
+		lineageTag: 494a1bb4-fe93-430b-a052-3847173907e2
+		summarizeBy: none
+		sourceColumn: speechiness_%
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column image_url
+		dataType: string
+		lineageTag: 8b68ba77-d9fb-4385-ae45-4b46516a2fbb
+		summarizeBy: none
+		sourceColumn: image_url
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date = DATE(updated_file[released_year], updated_file[released_month], updated_file[released_day])
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 31361ae3-e509-4f4c-8ba2-b5d7f8b825f9
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'Day of Week' = ```
+			FORMAT(updated_file[Date], "DDD")
+			
+			```
+		dataType: string
+		lineageTag: 63a22aab-3d3b-48d0-9828-7c86b24e802b
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month = ```
+			FORMAT(updated_file[Date], "MMM")
+			
+			```
+		dataType: string
+		lineageTag: 2da9e9bd-b7c1-4952-8cb9-9355a3e06101
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Date Hierarchy'
+		lineageTag: 8b6eeb47-ac75-4793-8ebd-a86d4cc96656
+
+		level Date
+			lineageTag: 4aebf9b0-4f39-4120-a4b3-29d26fad334c
+			column: Date
+
+	partition updated_file = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Rivashan Govender\Documents\Rivashan_Govender\PowerBI\YouTube - Spotify Analysis\updated_file.csv"),[Delimiter=",", Columns=25, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"track_name", type text}, {"artist(s)_name", type text}, {"artist_count", Int64.Type}, {"released_year", Int64.Type}, {"released_month", Int64.Type}, {"released_day", Int64.Type}, {"in_spotify_playlists", Int64.Type}, {"in_spotify_charts", Int64.Type}, {"streams", Int64.Type}, {"in_apple_playlists", Int64.Type}, {"in_apple_charts", Int64.Type}, {"in_deezer_playlists", type number}, {"in_deezer_charts", Int64.Type}, {"in_shazam_charts", type number}, {"bpm", Int64.Type}, {"key", type text}, {"mode", type text}, {"danceability_%", Int64.Type}, {"valence_%", Int64.Type}, {"energy_%", Int64.Type}, {"acousticness_%", Int64.Type}, {"instrumentalness_%", Int64.Type}, {"liveness_%", Int64.Type}, {"speechiness_%", Int64.Type}, {"image_url", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
