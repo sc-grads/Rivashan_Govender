@@ -1,2 +1,5 @@
-from model.store import Store   
-from model.item import ItemModel
+from models.user import UserModel
+from models.item import ItemModel
+from models.tag import TagModel
+from models.store import StoreModel
+from models.item_tags import ItemsTags
