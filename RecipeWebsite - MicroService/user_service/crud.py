@@ -1,4 +1,4 @@
-from sqlalchemy.orm import Session
+"""from sqlalchemy.orm import Session
 from passlib.context import CryptContext
 from models import User
 from schemas import UserCreate, UserUpdate
@@ -30,4 +30,4 @@ def update_user(db: Session, db_user:User, user:UserUpdate):
 def delete_user(db: Session, db_user:User):
     db.delete(db_user)
     db.commit()
-    return db_user
+    return db_user"""

@@ -7,9 +7,9 @@
     <title>Login</title>
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
-    <style>
-        body {
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
@@ -47,6 +47,87 @@
         }
         .logo h1 span {
             font-weight: 400;
+        }
+        .nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+        .search-bar {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .search-bar input {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+        }
+        .categories {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .category {
+            margin: 0 10px;
+            text-align: center;
+        }
+        .category img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .category p {
+            background-color: #e91e63;
+            color: #fff;
+            padding: 10px;
+            margin: 0;
+            border-radius: 0 0 10px 10px;
+            font-weight: 700;
+        }
+        .sub-categories {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .sub-category {
+            margin: 0 10px;
+            text-align: center;
+        }
+        .sub-category img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .sub-category p {
+            margin: 10px 0 0;
+            font-weight: 700;
+        }
+        .floating-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #e91e63;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
         }
         .container {
             max-width: 400px;
@@ -87,19 +168,12 @@
             font-size: 16px;
             cursor: pointer;
             transition: background-color 0.3s;
-            text-align: center;
-            text-decoration: none; /* Remove underline from link */
         }
         .btn:hover {
             background-color: #c2185b;
         }
-        #message {
-            text-align: center;
-            margin-top: 15px;
-        }
     </style>
 </head>
-
 <body>
     <div class="header">
         <a href="#">About</a>
@@ -117,7 +191,7 @@
     
     <div class="container">
         <h2>Login</h2>
-        <form id="loginForm">
+        <form action="/login" method="post">
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" class="form-control" id="username" name="username" required>
@@ -127,50 +201,12 @@
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
             <button type="submit" class="btn">Login</button>
+        </br>
         </form>
-    </br>
+        <button type="submit" class="btn"><a href="/register"> Register </a></button>   
 
-        <button class="btn"><a href="/register" style="color: white;">Register</a></button> 
-        <div id="message"></div> <!-- Placeholder for messages -->
     </div>
     
-    <script>
-        const form = document.getElementById('loginForm');
-        const messageDiv = document.getElementById('message');
-
-        form.addEventListener('submit', async (event) => {
-            event.preventDefault();  // Prevent the form from submitting the traditional way
-
-            const username = form.username.value;
-            const password = form.password.value;
-
-            try {
-                const response = await fetch('http://localhost:8002/users/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ username, password }),
-                });
-
-                const data = await response.json();
-
-                if (response.ok) {
-                    messageDiv.innerHTML = `<p style="color: green;">${data.message}</p>`;
-                    // Redirect to the home page after successful login
-                    setTimeout(() => {
-                        window.location.href = 'http://localhost:8080';  // Redirects to home page
-                    }, 200);  // Redirects after 2 seconds
-                } else {
-                    messageDiv.innerHTML = `<p style="color: red;">${data.detail || 'Login failed.'}</p>`;
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                messageDiv.innerHTML = `<p style="color: red;">An error occurred.</p>`;
-            }
-        });
-    </script>
-
     <button class="floating-button">
         <i class="fas fa-heart"></i>
     </button>

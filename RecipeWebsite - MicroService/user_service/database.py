@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 # Get the database URL from the environment variable, with a fallback
-SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./data/Recipe.db")
+SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./user_db.db")
 
 # Create a new SQLite engine
 engine = create_engine(

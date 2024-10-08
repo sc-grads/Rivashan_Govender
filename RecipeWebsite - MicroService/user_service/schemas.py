@@ -2,26 +2,20 @@ from pydantic import BaseModel, EmailStr, Field
 from typing import Optional
 from datetime import datetime
 
-class UserBase(BaseModel):
+class User(BaseModel):
     username: str = Field(..., min_length=3, max_length=50)
     email: EmailStr
-    is_active: Optional[bool] = True
-
-class UserCreate(UserBase):
     password: str = Field(..., min_length=8)
 
-class UserUpdate(BaseModel):
-    username: Optional[str] = Field(None, min_length=3, max_length=50)
-    email: Optional[EmailStr] = None
-    is_active: Optional[bool] = None
+# User Login Route
+class LoginRequest(BaseModel):
+    username: str
+    password: str
 
-class UserInDB(UserBase):
-    id: int
-    created_at: datetime
-    updated_at: Optional[datetime] = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True  # Change this from orm_mode to from_attributes
 
 # Alias for response model
-UserInDBResponse = UserInDB
+UserInDBResponse = User
+

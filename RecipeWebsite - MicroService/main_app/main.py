@@ -4,6 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 import httpx
 import os
+from typing import List
 
 app = FastAPI()
 
@@ -16,8 +17,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 static_dir = os.path.join(os.path.dirname(__file__), 'static')
+
 app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
 templates = Jinja2Templates(directory="Frontend/templates")
@@ -42,9 +43,16 @@ async def read_products():
         raise HTTPException(status_code=response.status_code, detail="Product service error")
     return response.json()
 
+
+
 @app.get("/login")
 async def login_page(request: Request):
     return templates.TemplateResponse("login.html", {"request": request})
+
+@app.get("/products")
+async def products_page(request: Request):
+    return templates.TemplateResponse("products.html", {"request": request})
+
 
 @app.get("/register")
 async def register_page(request: Request):
@@ -57,6 +65,8 @@ async def add_product_page(request: Request):
 @app.get("/cart")
 async def cart_page(request: Request):
     return templates.TemplateResponse("cart.html", {"request": request})
+
+
 
 if __name__ == "__main__":
     import uvicorn
