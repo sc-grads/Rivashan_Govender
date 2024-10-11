@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, Float, LargeBinary
-from .database import Base
+from database import Base
 
 class Product(Base):
     __tablename__ = "product"
@@ -8,4 +8,4 @@ class Product(Base):
     name = Column(String, index=True)
     description = Column(String)
     price = Column(Float)
-    image = Column(LargeBinary, unique=True, index=True)
+    image = Column(LargeBinary)

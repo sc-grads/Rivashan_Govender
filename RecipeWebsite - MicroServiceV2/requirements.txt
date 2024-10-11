@@ -1,3 +1,4 @@
+python-multipart
 uvicorn
 fastapi
 sqlalchemy
@@ -6,3 +7,5 @@ pydantic
 passlib
 bcrypt
 httpx
+aiosqlite
+SQLAlchemy

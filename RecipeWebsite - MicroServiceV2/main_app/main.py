@@ -35,7 +35,7 @@ async def read_users():
         raise HTTPException(status_code=response.status_code, detail="User service error")
     return response.json()
 
-@app.get("/products")
+@app.get("/product")
 async def read_products():
     async with httpx.AsyncClient() as client:
         response = await client.get("http://localhost:8001")
@@ -49,7 +49,7 @@ async def read_products():
 async def login_page(request: Request):
     return templates.TemplateResponse("login.html", {"request": request})
 
-@app.get("/products")
+@app.get("/catalog")
 async def products_page(request: Request):
     return templates.TemplateResponse("products.html", {"request": request})
 
