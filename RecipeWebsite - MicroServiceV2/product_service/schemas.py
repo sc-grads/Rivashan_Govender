@@ -15,3 +15,12 @@ class ProductRead(ProductBase):
 
     class Config:
         orm_mode = True
+
+class ProductResponse(BaseModel):
+    id: int
+    name: str
+    description: str
+    price: float
+
+    class Config:
+        orm_mode = True  # To convert SQLAlchemy models to Pydantic objects

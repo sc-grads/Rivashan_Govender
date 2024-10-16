@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Request, HTTPException
+from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
@@ -23,6 +24,8 @@ app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
 templates = Jinja2Templates(directory="Frontend/templates")
 
+
+
 @app.get("/")
 async def read_root(request: Request):
     return templates.TemplateResponse("HomePage.html", {"request": request})
@@ -45,12 +48,16 @@ async def read_products():
 
 
 
+@app.get("/user/list", response_class=HTMLResponse)
+def users_page(request: Request):
+    return templates.TemplateResponse("users.html", {"request": request})
+
 @app.get("/login")
 async def login_page(request: Request):
     return templates.TemplateResponse("login.html", {"request": request})
 
-@app.get("/catalog")
-async def products_page(request: Request):
+@app.get("/catalog", response_class=HTMLResponse)
+def products_page(request: Request):
     return templates.TemplateResponse("products.html", {"request": request})
 
 

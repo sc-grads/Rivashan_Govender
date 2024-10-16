@@ -1,11 +1,16 @@
 from typing import List
 from fastapi import APIRouter, HTTPException, Depends, status
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 from passlib.context import CryptContext
 from pydantic import BaseModel, EmailStr
 from database import get_db
 import models
 import schemas
+
+templates = Jinja2Templates(directory="main_app/Frontend/templates")
+
 
 # Password hashing configuration
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -72,7 +77,7 @@ def login(request: schemas.LoginRequest, db: Session = Depends(get_db)):
 
 
 # User list route for debugging purposes (optional)
-@router.get("/users", response_model=List[UserResponse])
+@router.get("/user/list")
 def list_users(db: Session = Depends(get_db)):
     users = db.query(models.User).all()
     return users

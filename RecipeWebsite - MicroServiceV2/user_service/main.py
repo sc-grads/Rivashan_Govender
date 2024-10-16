@@ -76,6 +76,10 @@ def login(request: schemas.LoginRequest, db: Session = Depends(get_db)):
 
 
 
+@app.get("/user/list")
+def get_users(db: Session = Depends(get_db)):
+    users = db.query(models.User).all()
+    return users
 
 """@app.post("/users/register/", response_model=UserInDBResponse)
 def register(user:UserInDBResponse, db: Session = Depends(get_db)):
