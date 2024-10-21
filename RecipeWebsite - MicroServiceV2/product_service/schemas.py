@@ -1,3 +1,4 @@
+from fastapi import File, UploadFile
 from pydantic import BaseModel
 from typing import Optional
 
@@ -8,8 +9,10 @@ class ProductBase(BaseModel):
     image: bytes
 
 class ProductCreate(ProductBase):
-    pass
-
+    name: str
+    description: Optional[str] = None
+    price: float  
+    image: Optional[UploadFile] = File(None)
 class ProductRead(ProductBase):
     id: int
 
@@ -21,6 +24,7 @@ class ProductResponse(BaseModel):
     name: str
     description: str
     price: float
+    image: str
 
     class Config:
         orm_mode = True  # To convert SQLAlchemy models to Pydantic objects

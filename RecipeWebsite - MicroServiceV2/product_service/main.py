@@ -42,7 +42,7 @@ def get_products(request: Request, db: Session = Depends(get_db)):
 
 
 # Route to add a new product
-@app.post( "/product/add", response_model=ProductCreate, status_code=status.HTTP_201_CREATED)
+@app.post( "/product/add/", response_model=ProductCreate, status_code=status.HTTP_201_CREATED)
 def add(name: str = Form(...), 
     description: str = Form(...), 
     price: float = Form(...), 

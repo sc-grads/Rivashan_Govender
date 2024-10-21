@@ -237,7 +237,7 @@
                 const data = await response.json();
 
                 if (response.ok) {
-                    messageDiv.innerHTML = `<p style="color: green;">${data.message}</p>`;
+                    messageDiv.innerHTML = `<p style="color: green;">${data.username,'Registration Successful'}</p>`;
                     // Redirect to login.html after successful registration
                     setTimeout(() => {
                         window.location.href = '/login';

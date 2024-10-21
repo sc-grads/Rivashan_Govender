@@ -1,9 +1,10 @@
 import base64
 from typing import List, Optional
 
+from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 from models import Product
-from schemas import ProductCreate, ProductRead
+from schemas import ProductCreate, ProductRead, ProductResponse
 from sqlalchemy.orm import Session
 from database import SessionLocal, get_db 
 from fastapi import APIRouter, File, Form, HTTPException, Depends, Request, UploadFile,status
@@ -34,20 +35,28 @@ def get_products(request: Request, db: Session = Depends(get_db)):
     return products
 
 
-@router.post( "/product/add", response_model=ProductCreate, status_code=status.HTTP_201_CREATED)
-def add(name: str = Form(...), 
-    description: str = Form(...), 
-    price: float = Form(...), 
-    image: UploadFile = File(...), 
+@router.post("/product/add", response_model=ProductResponse, status_code=status.HTTP_201_CREATED)
+async def add_product(
+    name: str = Form(...),
+    description: str = Form(...),
+    price: float = Form(...),
+    image: UploadFile = File(...),
     db: Session = Depends(get_db)
 ):
-    image_data = image.file.read()  # Read the uploaded image
-    db= SessionLocal()
-    new_product = Product(name=name, description=description, price=price, image=image_data)
-    db.add(new_product)
-    db.commit()
-    db.refresh(new_product)
-    return new_product
+    try:
+        image_data = await image.read()
+        new_product = Product(
+            name= name,
+            description= description,
+            price= price,
+            image= image_data,
+        )
+        db.add(new_product)
+        db.commit()
+        db.refresh(new_product)
+        return {"message": "Product added successfully", "product": new_product}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error adding product: {str(e)}")
 
 
 @router.get("product/{product_id}", response_model=ProductRead)

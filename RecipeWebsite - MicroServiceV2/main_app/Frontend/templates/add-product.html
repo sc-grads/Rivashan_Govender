@@ -133,7 +133,7 @@
 
     <div class="container">
         <h2>Add New Product</h2>
-        <form id="addProductForm" method="post" enctype="multipart/form-data">
+        <form id="addProductForm" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Product Name:</label>
                 <input type="text" class="form-control" id="name" name="name" required>
@@ -144,7 +144,7 @@
             </div>
             <div class="form-group">
                 <label for="price">Price:</label>
-                <input type="number" class="form-control" id="price" name="price" step="0.01" required>
+                <input type="number" class="form-control" id="price" name="price" step="1.00" required>
             </div>
             <div class="form-group">
                 <label for="image">Product Image:</label>
@@ -161,29 +161,38 @@
         const messageDiv = document.getElementById('message');
 
         form.addEventListener('submit', async (event) => {
-            event.preventDefault();
+        event.preventDefault();
 
-            const formData = new FormData(form);
-
-            try {
-                const response = await fetch('http://localhost:8001/product/add', {
-                    method: 'POST',
-                    body: formData
-                });
-
-                const data = await response.json();
-
-                if (response.ok) {
-                    messageDiv.innerHTML = `<p style="color: green;">${data.message}</p>`;
-                    setTimeout(() => window.location.href = '/catalog', 2000);
-                } else {
-                    messageDiv.innerHTML = `<p style="color: red;">${data.detail || 'Adding product failed.'}</p>`;
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                messageDiv.innerHTML = `<p style="color: red;">An error occurred.</p>`;
-            }
+    const formData = new FormData(form);
+    try {
+        const response = await fetch('http://localhost:8001/product/add', {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },  // Only Accept JSON
+            body: formData,
         });
+
+        // Check for non-2xx status codes
+        if (!response.ok) {
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                const errorData = await response.json();
+                throw new Error(errorData.detail || 'Failed to add product');
+            } else {
+                throw new Error('Unexpected response from server');
+            }
+        }
+
+        const data = await response.json();
+        messageDiv.innerHTML = `<p style="color: green;">${data.message}</p>`;
+        setTimeout(() => window.location.href = "/catalog", 200);
+
+    } catch (error) {
+        console.error('Error:', error);
+        messageDiv.innerHTML = `<p style="color: red;">${error.message}</p>`;
+    }
+});
+
+
     </script>
 </body>
 </html>

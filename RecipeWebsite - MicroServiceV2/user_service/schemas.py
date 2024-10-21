@@ -7,14 +7,14 @@ class User(BaseModel):
     email: EmailStr
     password: str = Field(..., min_length=8)
 
-# User Login Route
+# User Login Routedocker
 class LoginRequest(BaseModel):
-    username: str
+    email: str
     password: str
 
 
     class Config:
-        from_attributes = True  # Change this from orm_mode to from_attributes
+        orm_mode = True  # Change this from orm_mode to from_attributes
 
 # Alias for response model
 UserInDBResponse = User

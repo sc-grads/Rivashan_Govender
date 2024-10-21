@@ -59,20 +59,20 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
 
 # User Login Route
 class LoginRequest(BaseModel):
-    username: str
+    email: str
     password: str
 
 @router.post("/users/login")
 def login(request: schemas.LoginRequest, db: Session = Depends(get_db)):
     # Fetch the user by username
-    user = db.query(models.User).filter(models.User.username == request.username).first()
+    user = db.query(models.User).filter(models.User.email == request.email).first()
 
     # Validate user and password
     if not user or not pwd_context.verify(request.password, user.password):
         raise HTTPException(status_code=401, detail="Invalid credentials")
 
     # If successful, return a success message
-    return {"message": "Login successful", "user_id": user.id}
+    return {"message": "Login successful", "user_id": user.username}
 
 
 
