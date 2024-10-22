@@ -31,13 +31,13 @@ app.include_router(product_router)
 
 
 # Route to display the catalog of products
-@app.get("/product/list")
-def get_products(request: Request, db: Session = Depends(get_db)):
-    products = db.query(Product).all()
-    for product in products:
-        if product.image:
-            product.image = base64.b64encode(product.image).decode('utf-8')
-    return products
+#@app.get("/product/list")
+#def get_products(request: Request, db: Session = Depends(get_db)):
+#    products = db.query(Product).all()
+#    for product in products:
+#        if product.image:
+#            product.image = base64.b64encode(product.image).decode('utf-8')
+#    return products
 
 
 

@@ -60,11 +60,12 @@ async def add_product(
 
 
 @router.get("product/{product_id}", response_model=ProductRead)
-def read_product(product_id: int, db: Session = Depends(get_db)):
-    product = db.query(Product).filter(Product.id == product_id).first()
-    if not product:
-        raise HTTPException(status_code=404, detail="Product not found")
-    return product
+def get_product(request: Request, product_id: int, db: Session = Depends(get_db)):
+    products = db.query(Product).filter(Product.id == product_id).first()
+    for product in products:
+        if product.image:
+            product.image = base64.b64encode(product.image).decode('utf-8')
+    return products
 
 @router.delete("product/{product_id}", response_model=dict)
 def delete_product(product_id: int, db: Session = Depends(get_db)):
