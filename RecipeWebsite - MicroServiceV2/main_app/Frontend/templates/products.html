@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Website</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"/>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -54,70 +54,6 @@
             font-weight: 400;
         }
 
-        .nav {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .nav a {
-            color: #333;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 16px;
-        }
-
-        .nav a:hover {
-            text-decoration: underline;
-        }
-
-        .search-bar {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .search-bar input {
-            padding: 10px;
-            width: 300px;
-            border: 1px solid #e0e0e0;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .categories, .sub-categories {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-
-        .category, .sub-category {
-            margin: 10px;
-            text-align: center;
-        }
-
-        .category img, .sub-category img {
-            border-radius: 10px;
-            transition: transform 0.3s;
-        }
-
-        .category img:hover, .sub-category img:hover {
-            transform: scale(1.05);
-        }
-
-        .category p {
-            background-color: #e91e63;
-            color: #fff;
-            padding: 10px;
-            margin: 0;
-            border-radius: 0 0 10px 10px;
-            font-weight: 700;
-        }
-
-        .sub-category p {
-            margin: 10px 0 0;
-            font-weight: 700;
-        }
-
         .products {
             display: flex;
             flex-wrap: wrap;
@@ -130,9 +66,10 @@
             border-radius: 10px;
             margin: 10px;
             text-align: center;
-            width: 200px;
+            width: 220px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
+            overflow: hidden;
         }
 
         .product:hover {
@@ -140,23 +77,45 @@
         }
 
         .product img {
-            border-radius: 10px 10px 0 0;
             width: 100%;
             height: 150px;
+            object-fit: cover;
         }
 
         .product p {
-            padding: 10px;
-            margin: 0;
+            margin: 10px 0;
             font-weight: 700;
         }
 
         .product span {
             display: block;
             color: #e91e63;
-            margin: 5px 0;
+            margin-bottom: 10px;
         }
 
+        .product button {
+            width: 80%;
+            margin: 5px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-add-cart {
+            background-color: #cc2bec;
+            color: white;
+        }
+
+        .btn-add-cart:hover {
+            background-color: #9c20b5;
+        }
+
+        .btn-update {
+            background-color: #f321ec;
+            color: white;
+        }
         .add-product {
             text-align: center;
             margin-top: 20px;
@@ -188,155 +147,167 @@
             background-color: #d81b60;
         }
 
-        .floating-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #e91e63;
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s, transform 0.3s;
+        .btn-update:hover {
+            background-color: #ab17a6;
         }
 
-        .floating-button:hover {
-            background-color: #d81b60;
-            transform: scale(1.1);
+        .btn-delete {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background-color: #d32f2f;
+        }
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 40%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
     <div class="header">
-     <a href="#">
-      About
-     </a>
-     <a href="#">
-      Follow us on Social:
-     </a>
-     <a href="#">
-      <i class="fab fa-facebook-f">
-      </i>
-     </a>
-     <a href="#">
-      <i class="fab fa-twitter">
-      </i>
-     </a>
-     <a href="#">
-      <i class="fab fa-instagram">
-      </i>
-     </a>
-     <a href="#">
-      <i class="fab fa-pinterest">
-      </i>
-     </a>
-     <a href="/login">
-      Login
-     </a>
-     <a href="/register">
-      SignUp   
-      </a>
+        <a href="#">About</a>
+        <a href="#">Follow us on Social:</a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-pinterest"></i></a>
+        <a href="/login">Login</a>
+        <a href="/register">SignUp</a>
     </div>
+
     <a href="/" style="text-decoration: none; color: #333;">
-    <div class="logo">
-    <img alt="Logo" height="50" src="/static/images/company-logo-or-channel-logo-cartoon-logo-chefs-on-white-background-2NBKE38.jpg" width="50"/>
-     <h1>
-      THE RECIPE CRITIC
-      <span>
-       / TRIED &amp; TRUE
-      </span>
-     </h1>
+        <div class="logo">
+            <img src="/static/images/company-logo-or-channel-logo-cartoon-logo-chefs-on-white-background-2NBKE38.jpg" alt="Logo"/>
+            <h1>THE RECIPE CRITIC <span>/ TRIED &amp; TRUE</span></h1>
+        </div>
+    </a>
+
+    <h2 style="text-align: center; margin: 20px 0;">Our Products</h2>
+    <div class="products" id="productContainer">
+        <!-- Dynamic Product Cards will be rendered here -->
     </div>
+
+    <!-- Add Product Form -->
+    <div class="add-product">
+        <h3>Add a New Product</h3>
+        <a href="/add-product">
+            <button>Add Product</button>
         </a>
-
-<div class="search-bar">
-    <input type="text" placeholder="Search recipes...">
-</div>
-
-<div class="categories">
-    <div class="category">
-        <img src="/static/images/Instant Meals.jpg" alt="Instant Meals" width="200" height="200">
-        <p>Instant Meals</p>
     </div>
-    <div class="category">
-        <img src="/static\images\cake.jpg" alt="Cakes" width="200" height="200">
-        <p>Cakes</p>
+
+    <!-- Update Product Modal -->
+    <div id="updateModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <form id="updateForm">
+                <input type="hidden" id="updateProductId">
+                <label for="name">Name:</label>
+                <input type="text" id="updateName" required><br>
+
+                <label for="price">Price:</label>
+                <input type="number" id="updatePrice" step="0.01" required><br>
+
+                <label for="description">Description:</label>
+                <textarea id="updateDescription"></textarea><br>
+
+                <label for="image">Image URL:</label>
+                <input type="text" id="updateImage" placeholder="Enter image URL" required><br>
+
+                <button type="submit">Update Product</button>
+            </form>
+        </div>
     </div>
-    <div class="category">
-        <img src="/static/images/chicken.jpg" alt="Chicken" width="200" height="200">
-        <p>Chicken</p>
     </div>
-    <div class="category">
-        <img src="/static/images/Moms-simple-chicken-curry-6.jpg" alt="Curry" width="200" height="200">
-        <p>Curry</p>
-    </div>
-</div>
 
-</div>
+    <script>
+        // Fetch and display products when the page loads
+        document.addEventListener('DOMContentLoaded', async () => {
+            const productContainer = document.getElementById('productContainer');
 
-<!-- Products Section -->
-<h2 style="text-align: center; margin: 20px 0;">Our Products</h2>
-<div class="products" id="productContainer">
-    <!-- Dynamic Product Cards will be rendered here -->
-</div>
+            try {
+                const response = await fetch('http://localhost:8001/product/list'); // Adjust if port changes
+                if (!response.ok) throw new Error('Failed to fetch products');
 
-<!-- Add Product Form -->
-<div class="add-product">
-    <h3>Add a New Product</h3>
-    <a href="/add-product">
-        <button>Add Product</button>
-      </a>
-</div>
+                const products = await response.json();
+                productContainer.innerHTML = ''; // Clear any existing content
 
-<!-- Floating Button -->
-<button class="floating-button">+</button>
-<script>
-    document.addEventListener('DOMContentLoaded', async () => {
-        const productContainer = document.getElementById('productContainer');
+                products.forEach(product => {
+                    const imageBase64 = product.image ? `data:image/png;base64,${product.image}` : '';
+                    const card = document.createElement('div');
+                    card.className = 'product';
+                    card.innerHTML = `
+                        <img src="${imageBase64 || product.image_url}" alt="${product.name}">
+                        <p>${product.name}</p>
+                        <span>$${product.price}</span>
+                        <button class="btn-add-cart" onclick="addToCart(${product.id}, '${product.name}')">Add to Cart</button>
+                        <button class="btn-update" onclick="updateProduct(${product.id}, '${product.name}')">Update</button>
+                        <button class="btn-delete" onclick="deleteProduct(${product.id}, '${product.name}')">Delete</button>
+                    `;
+                    productContainer.appendChild(card);
+                });
+            } catch (error) {
+                console.error(error);
+                productContainer.innerHTML = '<p>Failed to load products.</p>';
+            }
+        });
 
-        try {
-            const response = await fetch('http://localhost:8001/product/list');  // Adjust if port changes
-            if (!response.ok) throw new Error('Failed to fetch products');
-
-            const products = await response.json();
-            productContainer.innerHTML = '';  // Clear any existing cards
-
-            products.forEach(product => {
-                const imageBase64 = product.image ? `data:image/png;base64,${product.image}` : '';
-
-                const card = document.createElement('div');
-                card.className = 'product';
-                card.innerHTML = `
-                    <img src="${imageBase64 || product.image_url}" alt="${product.name}">
-                    <p>${product.name}</p>
-                    <span>$${product.price}</span>
-                `;
-                productContainer.appendChild(card);
-            });
-        } catch (error) {
-            console.error(error);
-            productContainer.innerHTML = '<p>Failed to load products.</p>';
+        // Add product to cart
+        function addToCart(productId, productName) {
+            alert(`Added "${productName}" to cart.`);
+            // Add backend logic to handle cart addition
         }
-    });
 
-    function updateProduct(productId) {
-        alert(`Update product with ID: ${productId}`);
-    }
+        // Update product
+        function redirectToUpdatePage(productId) {
+    window.location.href = `/update.html?productId=${productId}`;
+}
 
-    function deleteProduct(productId) {
-        alert(`Delete product with ID: ${productId}`);
-    }
+        // Delete product
+        async function deleteProduct(productId, productName) {
+            if (confirm(`Are you sure you want to delete "${productName}"?`)) {
+                try {
+                    const response = await fetch(`http://localhost:8001/delete/${productId}`, {
+                        method: 'DELETE',
+                    });
 
-    function addToCart(productId) {
-        alert(`Added product with ID: ${productId} to cart.`);
-    }
-</script>
+                    if (response.ok) {
+                        alert(`Deleted "${productName}" successfully.`);
+                        location.reload(); // Reload the page to reflect changes
+                    } else {
+                        alert('Failed to delete the product.');
+                    }
+                } catch (error) {
+                    console.error('Error deleting product:', error);
+                    alert('An error occurred while deleting the product.');
+                }
+            }
+        }
+    </script>
 </body>
 </html>

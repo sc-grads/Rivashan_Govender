@@ -1,10 +1,12 @@
+import asyncio
+import os
 from fastapi import FastAPI, APIRouter, File, Form, HTTPException, Depends, Request, UploadFile,status
-from typing import List
+from typing import List, Optional
 from models import Base, Product
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
-from schemas import ProductCreate, ProductRead  # Pydantic schemas for validation
+from schemas import ProductCreate, ProductRead, ProductResponse  # Pydantic schemas for validation
 from database import SessionLocal, get_db, engine  # Import your DB session dependency
 import base64
 from routers.product import router as product_router# Create the database tables
@@ -42,7 +44,7 @@ app.include_router(product_router)
 
 
 # Route to add a new product
-@app.post( "/product/add/", response_model=ProductCreate, status_code=status.HTTP_201_CREATED)
+@app.post( "/product/add", response_model=ProductCreate, status_code=status.HTTP_201_CREATED)
 def add(name: str = Form(...), 
     description: str = Form(...), 
     price: float = Form(...), 
@@ -68,6 +70,25 @@ def delete_product(product_id: int, db: Session = Depends(get_db)):
     db.commit()
     return {"message": "Product deleted successfully"}
 
+
+@app.put("/update/{product_id}", response_model=ProductResponse)
+def update_product(
+    product_id: int,
+    product_data: ProductCreate,
+    db: Session = Depends(get_db),
+):
+    product = db.query(Product).filter(Product.id == product_id).first()
+    if not product:
+        raise HTTPException(status_code=404, detail="Product not found")
+
+    product.name = product_data.name
+    product.price = product_data.price
+    product.description = product_data.description
+    product.image = product_data.image  # Update image URL from frontend
+
+    db.commit()
+    db.refresh(product)
+    return product
 
 # Run the app using uvicorn
 if __name__ == "__main__":

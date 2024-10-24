@@ -154,8 +154,6 @@
         </form>
         <div id="message"></div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
         const form = document.getElementById('addProductForm');
         const messageDiv = document.getElementById('message');
@@ -167,7 +165,7 @@
     try {
         const response = await fetch('http://localhost:8001/product/add', {
             method: 'POST',
-            headers: { 'Accept': 'application/json' },  // Only Accept JSON
+            headers: { 'Content-Type': 'application/json' },  // Only Accept JSON
             body: formData,
         });
 

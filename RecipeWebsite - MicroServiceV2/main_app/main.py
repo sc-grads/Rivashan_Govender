@@ -73,7 +73,9 @@ async def add_product_page(request: Request):
 async def cart_page(request: Request):
     return templates.TemplateResponse("cart.html", {"request": request})
 
-
+@app.get("/account")
+async def cart_page(request: Request):
+    return templates.TemplateResponse("account.html", {"request": request})
 
 if __name__ == "__main__":
     import uvicorn

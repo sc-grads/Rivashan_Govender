@@ -81,34 +81,25 @@ def get_users(db: Session = Depends(get_db)):
     users = db.query(models.User).all()
     return users
 
-"""@app.post("/users/register/", response_model=UserInDBResponse)
-def register(user:UserInDBResponse, db: Session = Depends(get_db)):
-    return register(db=db, user=user)
-"""
-    
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
+# Simulated function to check if user is logged in
+def get_current_user(token: str = Depends(oauth2_scheme)):
+    if not token or token != "valid_token":  # Replace with your actual validation logic
+        return None
+    return {"username": "example_user"}  # Simulated user data
+
+@app.get("/account")
+async def account_page(request: Request, current_user: dict = Depends(get_current_user)):
+    if not current_user:
+        # If no user is logged in, redirect to the login page
+        return RedirectResponse(url="/login")
+
+    # If the user is logged in, render the account page
+    return {"message": f"Welcome {current_user['username']} to your account!"}
 
 
-"""@app.get("/users/{user_id}", response_model=UserInDBResponse)
-def read_user(user_id: int, db: Session = Depends(get_db)):
-    db_user = get_user(db, user_id=user_id)
-    if db_user is None:
-        raise HTTPException(status_code=404, detail="User not found")
-    return db_user
 
-@app.put("/users/{user_id}", response_model=UserInDBResponse)
-def update_user(user_id: int, user: UserUpdate, db: Session = Depends(get_db)):
-    db_user = get_user(db, user_id=user_id)
-    if db_user is None:
-        raise HTTPException(status_code=404, detail="User not found")
-    return update_user(db=db, db_user=db_user, user=user)
-
-@app.delete("/users/{user_id}", response_model=UserInDBResponse)
-def delete_user(user_id: int, db: Session = Depends(get_db)):
-    db_user = get_user(db, user_id=user_id)
-    if db_user is None:
-        raise HTTPException(status_code=404, detail="User not found")
-    return delete_user(db=db, db_user=db_user)
-"""
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8002)

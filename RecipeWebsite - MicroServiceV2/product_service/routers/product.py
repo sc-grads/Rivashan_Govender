@@ -76,3 +76,24 @@ def delete_product(product_id: int, db: Session = Depends(get_db)):
     db.commit()
     return {"message": "Product deleted successfully"}
 
+# PUT: Update a product (including image) by ID
+@router.put("update/{product_id}", response_model=ProductResponse)
+def update_product(
+    product_id: int,
+    product_data: ProductCreate,
+    db: Session = Depends(get_db),
+):
+    product = db.query(Product).filter(Product.id == product_id).first()
+    if not product:
+        raise HTTPException(status_code=404, detail="Product not found")
+
+    product.name = product_data.name
+    product.price = product_data.price
+    product.description = product_data.description
+    product.image = product_data.image  # Update image URL from frontend
+
+    db.commit()
+    db.refresh(product)
+    return product
+
+

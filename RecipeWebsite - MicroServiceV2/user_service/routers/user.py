@@ -81,3 +81,5 @@ def login(request: schemas.LoginRequest, db: Session = Depends(get_db)):
 def list_users(db: Session = Depends(get_db)):
     users = db.query(models.User).all()
     return users
+
+
