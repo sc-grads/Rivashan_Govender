@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Product</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Update Product</h1>
+
+    <form id="updateProductForm">
+        <input type="hidden" id="productId" name="productId">
+        <label for="name">Product Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea>
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" step="0.01" required>
+
+        <label for="image">Product Image:</label>
+        <input type="file" id="image" name="image">
+
+        <button type="submit">Update Product</button>
+    </form>
+
+    <script>
+        // Extract product ID from the URL query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('productId');
+
+        document.getElementById('productId').value = productId;
+
+        // Load existing product data into the form
+        async function loadProductData() {
+            try {
+                const response = await fetch(`http://localhost:8001/product/${productId}`);
+                if (!response.ok) throw new Error('Failed to fetch product data.');
+
+                const product = await response.json();
+
+                document.getElementById('name').value = product.name;
+                document.getElementById('description').value = product.description;
+                document.getElementById('price').value = product.price;
+            } catch (error) {
+                console.error(error);
+                alert('Error loading product data.');
+            }
+        }
+
+        // Call the function to load data when the page loads
+        document.addEventListener('DOMContentLoaded', loadProductData);
+
+        // Handle form submission for updating the product
+        document.getElementById('updateProductForm').addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent page refresh
+
+            const formData = new FormData(event.target);
+
+            try {
+                const response = await fetch(`http://localhost:8001/update/${productId}`, {
+                    method: 'PUT',
+                    body: formData,
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.detail || 'Error updating product.');
+                }
+
+                alert('Product updated successfully!');
+                window.location.href = '/products.html'; // Redirect back to product list
+            } catch (error) {
+                console.error(error);
+                alert(`Error: ${error.message}`);
+            }
+        });
+    </script>
+</body>
+</html>

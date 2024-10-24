@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users List</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Users List</h1>
+    <table id="usersTable" border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Created At</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- User rows will be populated here -->
+        </tbody>
+    </table>
+
+    <script>
+document.addEventListener('DOMContentLoaded', async () => {
+    const tableBody = document.querySelector('#usersTable tbody');
+
+    try {
+        const response = await fetch('http://localhost:8002/user/list');  // Adjust the port if needed
+        if (!response.ok) throw new Error('Failed to fetch users');
+
+        const users = await response.json();
+        tableBody.innerHTML = '';  // Clear any existing rows
+
+        users.forEach(user => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${user.id}</td>
+                <td>${user.username}</td>
+                <td>${user.email}</td>
+                <td>${new Date(user.created_at).toLocaleString()}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    } catch (error) {
+        console.error(error);
+        tableBody.innerHTML = '<tr><td colspan="4">Failed to load users.</td></tr>';
+    }
+});
+
+
+    </script>
+</body>
+</html>

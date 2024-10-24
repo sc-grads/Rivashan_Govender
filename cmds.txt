@@ -1,0 +1,4 @@
+docker-compose up -d
+docker-compose up --build
+
+uvicron user_service/main:app --reload 
