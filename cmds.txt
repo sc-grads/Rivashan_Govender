@@ -2,3 +2,7 @@ docker-compose up -d
 docker-compose up --build
 
 uvicron user_service/main:app --reload 
+uvicron product_service/main:app --reload 
+uvicron order_service/main:app --reload 
+uvicron payment_service/main:app --reload 
+uvicron cart_service/main:app --reload 

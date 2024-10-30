@@ -13,6 +13,9 @@ services:
     depends_on:
       - user_service
       - product_service
+      - payment_service  # Added payment_service dependency
+      - order_service    # Added order_service dependency
+      - cart_service     # Added cart_service dependency
     environment:
       - DATABASE_URL=sqlite:///app/data/Recipe.db # Ensure consistency
     networks:
@@ -50,6 +53,48 @@ services:
     networks:
       - app-network
 
+  payment_service:  # New payment service
+    build:
+      context: ./payment_service
+      dockerfile: DockerFile
+    ports:
+      - "8003:8000"  # Expose payment service on port 8003
+    volumes:
+      - ./payment_service:/app
+      - ./data:/app/data  # Ensure access to the database
+    environment:
+      - DATABASE_URL=sqlite:///app/data/Recipe.db # Ensure consistency
+    networks:
+      - app-network
+
+  order_service:  # New order service
+    build:
+      context: ./order_service
+      dockerfile: DockerFile
+    ports:
+      - "8004:8000"  # Expose order service on port 8004
+    volumes:
+      - ./order_service:/app
+      - ./data:/app/data  # Ensure access to the database
+    environment:
+      - DATABASE_URL=sqlite:///app/data/Recipe.db # Ensure consistency
+    networks:
+      - app-network
+
+  cart_service:  # New cart service
+    build:
+      context: ./cart_service
+      dockerfile: DockerFile
+    ports:
+      - "8005:8000"  # Expose cart service on port 8005
+    volumes:
+      - ./cart_service:/app
+      - ./data:/app/data  # Ensure access to the database
+    environment:
+      - DATABASE_URL=sqlite:///app/data/Recipe.db # Ensure consistency
+    networks:
+      - app-network
+
   nginx:
     build:
       context: ./nginx
@@ -62,6 +107,9 @@ services:
       - main_app
       - user_service
       - product_service
+      - payment_service  # Added payment_service dependency
+      - order_service    # Added order_service dependency
+      - cart_service     # Added cart_service dependency
     networks:
       - app-network
 
